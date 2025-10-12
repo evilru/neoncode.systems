@@ -26,6 +26,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-22.04
+    environment: 
+      name: ${{ github.ref_name == 'main' && 'production' || 'preview' }}
     needs: [build]
 
     steps:
@@ -34,4 +36,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: pages deploy . --project-name=neoncode --branch ${{ github.ref_name }}
