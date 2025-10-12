@@ -20,6 +20,12 @@ jobs:
         with:
           path: .vitepress/dist
           key: nc-build
-          
-          
-  
+
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
