@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "NEONCODE!",
-  description: "NEONCODE!",
+  description: "//neoncode.systems",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
