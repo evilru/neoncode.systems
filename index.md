@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "NEONCODE!"
-  text: "NEONCODE!"
+  text: "//neoncode.systems"
   tagline: My great project tagline
   actions:
     - theme: brand
