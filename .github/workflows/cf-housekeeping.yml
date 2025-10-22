@@ -10,8 +10,8 @@ jobs:
       - run: |
           # provide secrets
           ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-          PROJECT_NAME="${{ secrets.CLOUDFLARE_PROJECT_NAME }}"
-          API_TOKEN="${{ secrets.CLOUDFLARE_PURGE_TOKEN }}"
+          PROJECT_NAME="${{ vars.CLOUDFLARE_PROJECT_NAME }}"
+          API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
           API_URL="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT_NAME/deployments"
           BRANCH_NAME="${{ github.ref_name }}"
           EVENT_NAME="${{ github.event_name }}"
