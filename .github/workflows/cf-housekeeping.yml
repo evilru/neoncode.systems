@@ -1,8 +1,6 @@
 on:
   push:
-    branches: ['*']
   delete:
-    branches: ['*']
 
 jobs:
   cleanup:
@@ -37,5 +35,3 @@ jobs:
               curl -s -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$dep_id"
             fi
           done
-
-
