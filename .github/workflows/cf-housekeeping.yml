@@ -18,11 +18,11 @@ jobs:
 
           echo "Event: $EVENT_NAME, Branch: $BRANCH_NAME"
 
-          response=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL?per_page=100")
+          response=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL")
           echo $response
 
           # Get all deployments for the branch
-          all_deployments=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL?per_page=100" | jq -c ".result[] | select(.deployment_trigger.metadata.branch == \"$BRANCH_NAME\") | {id: .id, created_on: .created_on}")
+          all_deployments=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL" | jq -c ".result[] | select(.deployment_trigger.metadata.branch == \"$BRANCH_NAME\") | {id: .id, created_on: .created_on}")
 
           if [ "$EVENT_NAME" == "push" ]; then
             # Keep the 10 most recent, delete the rest
