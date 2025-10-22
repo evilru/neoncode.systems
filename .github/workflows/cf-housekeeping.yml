@@ -1,0 +1,39 @@
+on:
+  push:
+  delete:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - run: |
+          # provide secrets
+          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          PROJECT_NAME="${{ vars.CLOUDFLARE_PROJECT_NAME }}"
+          API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          API_URL="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT_NAME/deployments"
+          BRANCH_NAME="${{ github.ref_name }}"
+          EVENT_NAME="${{ github.event_name }}"
+
+          echo "Event: $EVENT_NAME, Branch: $BRANCH_NAME"
+
+          # Get all deployments for the branch
+          all_deployments=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL" | jq -c ".result[] | select(.deployment_trigger.metadata.branch == \"$BRANCH_NAME\") | {id: .id, created_on: .created_on}")
+
+          if [ "$EVENT_NAME" == "push" ]; then
+            # Keep the 10 most recent, delete the rest
+            deployments_to_delete=$(echo "$all_deployments" | jq -r -s 'sort_by(.created_on) | reverse | .[10:] | .[].id' 2>/dev/null || echo "")
+          else
+            # Delete all
+            deployments_to_delete=$(echo "$all_deployments" | jq -r '.id')
+          fi
+
+          echo "Deployments to delete: $deployments_to_delete"
+
+          for dep_id in $deployments_to_delete; do
+            if [ -n "$dep_id" ]; then
+              echo "Deleting deployment $dep_id"
+              curl -s -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$dep_id"
+            fi
+          done
