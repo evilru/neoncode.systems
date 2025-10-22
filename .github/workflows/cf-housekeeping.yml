@@ -23,11 +23,13 @@ jobs:
 
           if [ "$EVENT_NAME" == "push" ]; then
             # Keep the 10 most recent, delete the rest
-            deployments_to_delete=$(echo "$all_deployments" | jq -s 'sort_by(.created_on) | reverse | .[10:] | .[].id' 2>/dev/null || echo "")
+            deployments_to_delete=$(echo "$all_deployments" | jq -r -s 'sort_by(.created_on) | reverse | .[10:] | .[].id' 2>/dev/null || echo "")
           else
             # Delete all
             deployments_to_delete=$(echo "$all_deployments" | jq -r '.id')
           fi
+
+          echo "Deployments to delete: $deployments_to_delete"
 
           for dep_id in $deployments_to_delete; do
             if [ -n "$dep_id" ]; then
