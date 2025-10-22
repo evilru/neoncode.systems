@@ -40,11 +40,6 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           name: dist
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm install -g @cloudflare/wrangler
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
