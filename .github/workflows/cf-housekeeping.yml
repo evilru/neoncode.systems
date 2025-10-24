@@ -1,6 +1,5 @@
 on:
   push:
-  delete:
 
 jobs:
   cleanup:
@@ -8,32 +7,44 @@ jobs:
 
     steps:
       - run: |
+          set -euo pipefail
           # provide secrets
           ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
           PROJECT_NAME="${{ vars.CLOUDFLARE_PROJECT_NAME }}"
           API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
           API_URL="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT_NAME/deployments"
-          BRANCH_NAME="${{ github.ref_name }}"
-          EVENT_NAME="${{ github.event_name }}"
 
-          echo "Event: $EVENT_NAME, Branch: $BRANCH_NAME"
+          for entry in "production:10" "preview:20"; do
+            env="${entry%%:*}"
+            keep="${entry##*:}"
+            echo "Processing environment: $env (keep last $keep deployments)"
 
-          # Get all deployments for the branch
-          all_deployments=$(curl -s -H "Authorization: Bearer $API_TOKEN" "$API_URL" | jq -c ".result[] | select(.deployment_trigger.metadata.branch == \"$BRANCH_NAME\") | {id: .id, created_on: .created_on}")
-
-          if [ "$EVENT_NAME" == "push" ]; then
-            # Keep the 10 most recent, delete the rest
-            deployments_to_delete=$(echo "$all_deployments" | jq -r -s 'sort_by(.created_on) | reverse | .[10:] | .[].id' 2>/dev/null || echo "")
-          else
-            # Delete all
-            deployments_to_delete=$(echo "$all_deployments" | jq -r '.id')
-          fi
-
-          echo "Deployments to delete: $deployments_to_delete"
-
-          for dep_id in $deployments_to_delete; do
-            if [ -n "$dep_id" ]; then
-              echo "Deleting deployment $dep_id"
-              curl -s -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$dep_id"
+            deployments=$(curl -sS -H "Authorization: Bearer $API_TOKEN" "$API_URL?environment=$env")
+            if ! echo "$deployments" | jq -e '.success == true' >/dev/null 2>&1; then
+              echo "Cloudflare API error for env $env:"
+              echo "$deployments" | jq '.errors, .messages' || echo "$deployments"
+              exit 1
             fi
+
+            deployment_ids=$(echo "$deployments" | jq -r --argjson keep "$keep" '(.result // []) | sort_by(.created_on) | reverse | .[$keep:] | .[].id' 2>/dev/null || echo "")
+            if [ -z "$deployment_ids" ]; then
+              echo "No $env deployments to delete."
+              continue
+            fi
+
+            for deployment in $deployment_ids; do
+              if [ -n "$deployment" ]; then
+                echo "Deleting $env deployment $deployment"
+                del=$(curl -sS -w "\n%{http_code}" -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$deployment")
+                code=$(echo "$del" | tail -n1)
+                body=$(echo "$del" | sed '$d')
+                if [ "$code" -ge 400 ]; then
+                  echo "Delete failed ($code) for $deployment:"
+                  echo "$body" | jq '.errors? // .'
+                  exit 1
+                else
+                  echo "Deleted $deployment"
+                fi
+              fi
+            done
           done
