@@ -1,0 +1,94 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  VERSION:
+    # Get version from environment or GitVersion docker image
+    sh: |
+      echo ${VERSION:-$(\
+        docker run --rm \
+        -v "$(pwd):/repo" \
+        gittools/gitversion:latest \
+        /repo \
+        /showvariable FullSemVer \
+      )}
+env:
+  # Make version available to Vite build
+  # import.meta.env.VITE_APP_VERSION
+  VITE_APP_VERSION: "{{ .VERSION }}"
+
+tasks:
+  dev:
+    desc: Start development server
+    cmd: pnpm run docs:dev
+
+  preview:
+    desc: Build site for preview
+    cmd: pnpm run docs:preview
+
+  build:
+    desc: Build the site with release notes and changelog
+    cmds:
+      - git tag v{{ .VERSION }}  # set tag for changelog/releasenotes to pick up
+      - task: _changelog
+      - task: _releasenotes
+      - git tag -d v{{ .VERSION }}  # remove temporary tag
+      - task: _build
+
+  release:
+    desc: "Full release: build, version, tag (use PUSH=true to push)"
+    vars:
+      PUSH: '{{ .PUSH | default "false" }}'
+    cmds:
+      - task: build
+      - task: _version
+      - task: _push
+
+  _build:
+    internal: true
+    desc: Build the site
+    env:
+      VITE_APP_VERSION: "{{ .VERSION }}"
+    cmd: pnpm run docs:build
+
+  _changelog:
+    internal: true
+    desc: Generate changelog
+    preconditions:
+      - sh: command -v git-cliff
+        msg: "git-cliff not installed"
+    cmd: git-cliff --tag {{ .VERSION }} --output CHANGELOG.md
+
+  _releasenotes:
+    internal: true
+    desc: Generate release notes
+    preconditions:
+      - sh: command -v pandoc
+        msg: "pandoc not installed"
+      - sh: test -f .pandoc/strip-ids.lua
+        msg: "pandoc filter missing"
+    cmds:
+      - reno -q report | pandoc --lua-filter .pandoc/strip-ids.lua --from=rst -o RELEASE_NOTES.md
+
+  _version:
+    internal: true
+    desc: Bump version and create git tag
+    cmds:
+      - pnpm version {{ .VERSION }} --allow-same-version --no-git-tag-version
+      - git add package.json CHANGELOG.md RELEASE_NOTES.md
+      # TODO: [skip ci] in commit message to avoid triggering CI again
+      - |
+        git commit -m "chore(release): v{{ .VERSION }}"
+      - git tag -f --annotate v{{ .VERSION }} -m "Release v{{ .VERSION }}"
+
+  _push:
+    internal: true
+    desc: Push commits and tags to remote
+    preconditions:
+      - sh: '[ "{{ .PUSH }}" = "true" ]'
+        msg: "Skipping push (use PUSH=true to enable)"
+    cmds:
+      - echo "push"
+      # - git push origin HEAD --follow-tags
+      # - git push --follow-tags

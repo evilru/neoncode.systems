@@ -23,3 +23,8 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
+<script setup>
+const appVersion = import.meta.env.VITE_APP_VERSION;
+</script>
+
+[v{{ appVersion }}](./version.md)

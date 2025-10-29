@@ -8,9 +8,18 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-22.04
-
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      # - uses: docker://gittools/gitversion
+      #   id: version
+      #   with:
+      #     args: >-
+      #       .
+      #       /showvariable FullSemVer
+      # - run: echo "VERSION=${{steps.version.outputs.stdout}}" >> $GITHUB_ENV
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -19,7 +28,11 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install
-      - run: pnpm run docs:build
+      - uses: Illbjorn/setup-task@0.1.0
+      # - run: sudo apt-get update && sudo apt-get install -y python3-reno
+      - run: pip install reno git-cliff
+      - uses: pandoc/actions/setup@v1
+      - run: task build
       - uses: actions/upload-artifact@v4
         with:
           path: .vitepress/dist
