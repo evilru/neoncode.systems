@@ -51,6 +51,7 @@ jobs:
       url: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
     needs: [build]
     steps:
+      # TODO: add release step, and use reno output as release body (https://github.com/orhun/git-cliff-action)
       - uses: actions/download-artifact@v5
         with:
           name: dist
