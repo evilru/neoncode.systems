@@ -77,9 +77,8 @@ tasks:
     cmds:
       - pnpm version {{ .VERSION }} --allow-same-version --no-git-tag-version
       - git add package.json CHANGELOG.md RELEASE_NOTES.md
-      # TODO: [skip ci] in commit message to avoid triggering CI again
       - |
-        git commit -m "chore(release): v{{ .VERSION }}"
+        git commit -m "chore(release): v{{ .VERSION }}" -m "[skip ci]"
       - git tag -f --annotate v{{ .VERSION }} -m "Release v{{ .VERSION }}"
 
   _push:
@@ -89,6 +88,6 @@ tasks:
       - sh: '[ "{{ .PUSH }}" = "true" ]'
         msg: "Skipping push (use PUSH=true to enable)"
     cmds:
-      - echo "push"
-      # - git push origin HEAD --follow-tags
-      # - git push --follow-tags
+      # - echo "push"
+      - git push origin HEAD --follow-tags
+      - gh release create v{{ .VERSION }} --title "Release v{{ .VERSION }}" --notes-file RELEASE_NOTES.md
