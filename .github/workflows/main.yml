@@ -29,10 +29,11 @@ jobs:
           cache: pnpm
       - run: pnpm install
       - uses: Illbjorn/setup-task@0.1.0
-      # - run: sudo apt-get update && sudo apt-get install -y python3-reno
       - run: pip install reno git-cliff
       - uses: pandoc/actions/setup@v1
-      - run: task build
+      - run: task build PUSH=$PUSH_FLAG
+        env:
+          PUSH_FLAG: ${{ github.ref_name == 'main' && 'true' || 'false' }}
       - uses: actions/upload-artifact@v4
         with:
           path: .vitepress/dist
