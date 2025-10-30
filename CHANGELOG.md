@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.1-60] - 2025-10-30
+
+### ⚙️ Miscellaneous Tasks
+
+- 👷 Set GH_TOKEN for gh release
+# Changelog
+
 ## [0.0.1-58] - 2025-10-30
 
 ### 🚀 Features
@@ -64,3 +71,4 @@
 - 👷 Fix git origin with secrets
 - 👷 Add .git suffix to the remote
 - 👷 Give pipeline write permissions
+- *(release)* V0.0.1-58
