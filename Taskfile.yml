@@ -4,15 +4,8 @@ version: '3'
 
 vars:
   VERSION:
-    # Get version from environment or GitVersion docker image
     sh: |
-      echo ${VERSION:-$(\
-        docker run --rm \
-        -v "$(pwd):/repo" \
-        gittools/gitversion:latest \
-        /repo \
-        /showvariable FullSemVer \
-      )}
+      docker run --rm -v "$(pwd):/repo" gittools/gitversion:latest /repo /showvariable FullSemVer
 env:
   # Make version available to Vite build
   # import.meta.env.VITE_APP_VERSION
