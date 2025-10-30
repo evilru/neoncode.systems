@@ -84,8 +84,8 @@ tasks:
   _push:
     internal: true
     desc: Push commits and tags to remote
-    env:
-      GH_TOKEN: "{{ .GITHUB_TOKEN }}"
+    # env:
+    #   GH_TOKEN: "{{ .GITHUB_TOKEN }}"
     preconditions:
       - sh: '[ "{{ .PUSH }}" = "true" ]'
         msg: "Skipping push (use PUSH=true to enable)"
