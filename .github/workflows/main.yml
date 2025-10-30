@@ -20,6 +20,9 @@ jobs:
       #       .
       #       /showvariable FullSemVer
       # - run: echo "VERSION=${{steps.version.outputs.stdout}}" >> $GITHUB_ENV
+      - run: git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - run: git config --global user.name "github-actions[bot]"
+      - run: git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
       - uses: pnpm/action-setup@v4
         with:
           version: 10
