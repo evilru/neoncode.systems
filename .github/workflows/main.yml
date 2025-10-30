@@ -31,8 +31,9 @@ jobs:
       - uses: Illbjorn/setup-task@0.1.0
       - run: pip install reno git-cliff
       - uses: pandoc/actions/setup@v1
-      - run: task build PUSH=$PUSH_FLAG
+      - run: task $BUILD_TASK PUSH=$PUSH_FLAG
         env:
+          BUILD_TASK: ${{ github.ref_name == 'main' && 'release' || 'build' }}
           PUSH_FLAG: ${{ github.ref_name == 'main' && 'true' || 'false' }}
       - uses: actions/upload-artifact@v4
         with:
@@ -51,6 +52,7 @@ jobs:
       url: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
     needs: [build]
     steps:
+      # TODO: add release step, and use reno output as release body (https://github.com/orhun/git-cliff-action)
       - uses: actions/download-artifact@v5
         with:
           name: dist
