@@ -83,6 +83,6 @@ tasks:
       - sh: '[ "{{ .PUSH }}" = "true" ]'
         msg: "Skipping push (use PUSH=true to enable)"
     cmds:
-      - echo "push"
+      # - echo "push"
       - git push origin HEAD --follow-tags
       - gh release create v{{ .VERSION }} --title "Release v{{ .VERSION }}" --notes-file RELEASE_NOTES.md
