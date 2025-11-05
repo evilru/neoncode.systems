@@ -1,26 +1,11 @@
 # Changelog
 
+## [0.1.1] - 2025-11-05
+
+### ⚙️ Miscellaneous Tasks
+
+- 👷 Adapt filters to not show my release commits in the changelog
 ## [0.1.0] - 2025-11-05
-
-### ⚙️ Miscellaneous Tasks
-
-- 👷 Add GitVersion config and simplify gitversion call
-- 👷 Set changelog header
-- 👷 Fix formatting of the release notes
-- 👷 Remove changes that shouldn't be commited
-## [0.0.1-62] - 2025-10-30
-
-### ⚙️ Miscellaneous Tasks
-
-- 👷 Try to find the right place to set the GH_TOKEN var
-- *(release)* V0.0.1-62
-## [0.0.1-60] - 2025-10-30
-
-### ⚙️ Miscellaneous Tasks
-
-- 👷 Set GH_TOKEN for gh release
-- *(release)* V0.0.1-60
-## [0.0.1-58] - 2025-10-30
 
 ### 🚀 Features
 
@@ -84,4 +69,9 @@
 - 👷 Fix git origin with secrets
 - 👷 Add .git suffix to the remote
 - 👷 Give pipeline write permissions
-- *(release)* V0.0.1-58
+- 👷 Set GH_TOKEN for gh release
+- 👷 Try to find the right place to set the GH_TOKEN var
+- 👷 Add GitVersion config and simplify gitversion call
+- 👷 Set changelog header
+- 👷 Fix formatting of the release notes
+- 👷 Remove changes that shouldn't be commited

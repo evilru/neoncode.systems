@@ -1,6 +1,6 @@
 # Release Notes
 
-## v0.0.1-58
+## v0.1.0
 
 ### Prelude
 
