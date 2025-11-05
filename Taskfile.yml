@@ -62,7 +62,7 @@ tasks:
       - sh: test -f .pandoc/strip-ids.lua
         msg: "pandoc filter missing"
     cmds:
-      - reno -q report | pandoc --lua-filter .pandoc/strip-ids.lua --from=rst -o RELEASE_NOTES.md
+      - reno -q report --no-show-source | pandoc --lua-filter .pandoc/strip-ids.lua --from=rst -o RELEASE_NOTES.md
 
   _version:
     internal: true
@@ -83,6 +83,6 @@ tasks:
       - sh: '[ "{{ .PUSH }}" = "true" ]'
         msg: "Skipping push (use PUSH=true to enable)"
     cmds:
-      # - echo "push"
+      - echo "push"
       - git push origin HEAD --follow-tags
       - gh release create v{{ .VERSION }} --title "Release v{{ .VERSION }}" --notes-file RELEASE_NOTES.md
