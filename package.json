@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1-62",
+  "version": "0.1.0",
   "devDependencies": {
     "vitepress": "^1.6.4",
     "vue": "^3.5.22"
