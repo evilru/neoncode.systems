@@ -5,22 +5,22 @@ layout: home
 hero:
   name: "NEONCODE!"
   text: "//neoncode.systems"
-  tagline: My great project tagline
+  tagline: Making systems visible
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Explore //proto.labs
+      link: /proto.labs/
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Browse //learn.vue
+      link: /learn.vue/
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: What This Is
+    details: A space for building AI-powered tools and learning in public. //proto.labs for experiments & proof-of-concepts. //learn.vue for learning journeys documented.
+  - title: Who
+    details: Martin Haberfellner — Organizational Systems Engineer. Building the invisible infrastructure that makes teams work.
+  - title: Why
+    details: Because the best systems go unseen.
 ---
 
 <script setup>

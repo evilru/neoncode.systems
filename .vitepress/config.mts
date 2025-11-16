@@ -7,26 +7,35 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: '//proto.labs', link: '/proto.labs/index.md' },
+      { text: '//learn.vue', link: '/learn.vue/index.md' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Navigation',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '//proto.labs', link: '/proto.labs/index.md' },
+          { text: '//learn.vue', link: '/learn.vue/index.md' }
         ]
       },
       {
         text: 'Legal',
         items: [
-          { text: 'Imprint', link: '/imprint' },
-          { text: 'Privacy', link: '/privacy' }
+          { text: 'Imprint', link: '/imprint.md' },
+          { text: 'Privacy', link: '/privacy.md' },
+          { text: 'License', link: '/LICENSE.md' }
         ]
       }
     ],
+
+    lastUpdated: {
+      text: 'updated',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      }
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/evilru/neoncode.systems' },
