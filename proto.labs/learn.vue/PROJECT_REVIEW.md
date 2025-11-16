@@ -949,7 +949,7 @@ Contributions sind willkommen! Bitte:
 
 ## 📝 License
 
-MIT License - siehe [LICENSE](LICENSE) Datei.
+MIT License - siehe ```LICENSE``` Datei.
 
 ## 🙏 Credits
 
