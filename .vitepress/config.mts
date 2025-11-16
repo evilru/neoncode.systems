@@ -30,7 +30,7 @@ export default defineConfig({
     ],
 
     lastUpdated: {
-      text: 'updated',
+      text: 'Last updated',
       formatOptions: {
         dateStyle: 'short',
         timeStyle: 'short'
