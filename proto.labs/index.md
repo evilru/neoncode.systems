@@ -18,13 +18,9 @@ Full story of the review process coming soon.
 
 #### Reviews Completed
 
+::: info
+AI review of Vue teaching material (2018-2024, Vue 1→2→3 migration). Shows what AI sees in real teaching code.
+:::
+
 * [Read the Project Review](/proto.labs/learn.vue/PROJECT_REVIEW.md)
 * [Read the Documentation Review](/proto.labs/learn.vue/DOCUMENTATION_REVIEW.md)
-
-
-## Upcoming Experiments
-
-- **XP Buddy** — AI Pair Programming
-- **RE-Coach** — AI Requirements Engineering
-- More experiments...
-

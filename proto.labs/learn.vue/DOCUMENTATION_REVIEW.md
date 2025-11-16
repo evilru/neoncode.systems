@@ -4,7 +4,12 @@
 **Geprüfte Materialien:** Wiki-Anleitungen + Frontend-Template  
 **Kontext:** Lernprojekt für Vue 3 mit 6 Einheiten (Inverted Classroom)
 
----
+::: info
+**About This Review**  
+AI analysis of teaching materials (wiki guides + template) created 2018-2024 for FH St. Pölten.  
+Reviews alignment between documentation, template code, and actual project state across Vue 1→2→3 evolution.  
+Value: Shows the gap between teaching docs and reality, common documentation drift in educational projects.
+:::
 
 ## 🎯 Executive Summary
 
@@ -12,7 +17,6 @@ Die **Wiki-Anleitungen** sind **hervorragend strukturiert** und bieten eine **di
 
 **Bewertung als Lernanleitung: 7.5/10** 🟡
 
----
 
 ## ✅ Stärken der Dokumentation
 
@@ -50,7 +54,6 @@ Die **Wiki-Anleitungen** sind **hervorragend strukturiert** und bieten eine **di
    
    ✅ Bereitet auf echte Entwicklungsumgebung vor!
 
----
 
 ## 🚨 Kritische Diskrepanzen & Probleme
 
@@ -282,7 +285,7 @@ Wenn du dir noch kein [Sheep Hosting][sheep] geholt hast dann ist jetzt der rich
 - Nicht relevant für öffentliches Lernprojekt
 
 **Lösung:** Für öffentliche Version ersetzen mit:
-```markdown
+````markdown
 ## Deployment
 
 Für das Deployment deiner App gibt es viele Möglichkeiten:
@@ -300,7 +303,7 @@ npm run build
 
 # dist/ Ordner wird erstellt und kann deployed werden
 ```
-```
+````
 
 ---
 
@@ -353,7 +356,7 @@ Bitte schreibe zum Abschluss der Vorbereitung einen kurzen "Erlebnisbericht" ins
 - Keine Beispiele
 
 **Lösung:**
-```markdown
+````markdown
 ## Dev Diary
 
 Führe ein Lerntagebuch für jede Einheit. Dies hilft dir:
@@ -385,7 +388,7 @@ Führe ein Lerntagebuch für jede Einheit. Dies hilft dir:
 ```
 
 **Speicherort:** `dev-diary/einheit-X.md`
-```
+````
 
 ---
 
@@ -416,14 +419,14 @@ Führe ein Lerntagebuch für jede Einheit. Dies hilft dir:
 ```
 
 Und in Anleitung ergänzen:
-```markdown
+````markdown
 **Empfohlene Node.js Version:** 20.x LTS
 
 Du kannst Volta nutzen um automatisch die richtige Version zu verwenden:
 ```bash
 volta install node@20
 ```
-```
+````
 
 ---
 
@@ -484,7 +487,7 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
 **Fehlt komplett:** Security-Hinweise!
 
 **Lösung - Anleitung ergänzen:**
-```markdown
+````markdown
 ## Google Maps API Key - Security
 
 ⚠️ **WICHTIG:** Der API-Key darf **NIEMALS** im Code committed werden!
@@ -545,9 +548,8 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
 - Setze ein Budget-Alert in Google Cloud Console
 - Empfohlen: $5/Monat Alert
 - Free Tier: $200 Guthaben/Monat
-```
+````
 
----
 
 ## 📊 Vergleich: Template vs. Haupt-Projekt vs. Anleitung
 
@@ -578,7 +580,6 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
 - 🔴 Fehlt / Kritisch
 - ❌ Nicht vorhanden
 
----
 
 ## 🎯 Bewertung der Anleitungs-Qualität
 
@@ -625,7 +626,6 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
 - Code-Snippets mit Syntax-Highlighting
 - Screenshots von erwarteten Ergebnissen
 
----
 
 ## ✅ Empfohlene Fixes - Priorisiert
 
@@ -738,7 +738,6 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
     - Einheit erwähnt Quiz, aber Fragen fehlen
     - Als Self-Assessment Tool
 
----
 
 ## 📋 Konkrete TODO-Liste für Dokumentation
 
@@ -793,7 +792,6 @@ Dazu muss eine Kreditkarte hinterlegt werden - das Freivolumen ist so hoch dass 
 - [ ] Advanced Topics (TypeScript Migration, etc.)
 ```
 
----
 
 ## 🎓 Spezifische Verbesserungsvorschläge pro Einheit
 
@@ -1131,7 +1129,6 @@ watch: {
 - Astronomische Dämmerung berücksichtigen
 ```
 
----
 
 ## 🎯 Zusammenfassung
 
@@ -1161,7 +1158,6 @@ watch: {
 - ⚪ Interactive Examples
 - ⚪ Community-Plattform
 
----
 
 ## 📊 Finale Bewertung
 

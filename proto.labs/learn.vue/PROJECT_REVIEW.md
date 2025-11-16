@@ -6,7 +6,12 @@
 **Review Datum:** 5. Oktober 2025  
 **Zweck:** Lernprojekt für Vue 3 Options API mit Material Design Lite
 
----
+::: info
+**About This Review**  
+AI analysis (Oct 2025) of teaching material I created 2018-2024 for FH St. Pölten, migrated from Vue 1 → Vue 2 → Vue 3.  
+The "issues" reflect teaching-focused code vs. production standards, framework evolution, and infrastructure from university network (API keys/URLs non-functional externally).  
+Value: Shows how AI reviews real teaching code and the gap between teaching and production.
+:::
 
 ## 🎯 Gesamtbewertung: **6/10** (Solide Basis mit erheblichem Verbesserungspotenzial)
 
@@ -25,8 +30,6 @@
 - ❌ Fehlende Dokumentation
 - ❌ Accessibility-Probleme
 
----
-
 ## 👤 Experten-Reviews nach Persona
 
 ### 🔒 **Mikko Hyppönen** - Security Expert Perspective
@@ -40,7 +43,7 @@
    // src/main.js, Zeile 14-16
    app.use(VueGoogleMaps, {
      load: {
-       key: "AIzaSyDZ6uQ8cTcVGfHZirOUbey1Fh3mlPKWoZU", // ❌ ÖFFENTLICHER API KEY!
+       key: "AIzbSyDZ6uQ8cTcVGfHZirOUbey1Fh3mlPKWoZU", // ❌ ÖFFENTLICHER API KEY!
      },
    });
    ```
@@ -59,7 +62,7 @@
 2. **🚨 HARDCODED BACKEND URL**
    ```javascript
    // src/http/index.js, Zeile 7
-   baseURL: "https://lbartner-01.media.fhstp.ac.at:4430/api",
+   baseURL: "https://lbartner.media.fhstp.ac.at:4430/api",
    ```
    **Problem:** Backend-URL ist fest codiert und verweist auf einen spezifischen Server.
    
@@ -958,7 +961,6 @@ MIT License - siehe [LICENSE](LICENSE) Datei.
 
 Dies ist ein **Lernprojekt**. Für Production-Use sind weitere Security-
 Maßnahmen erforderlich (siehe SECURITY.md).
-```
 
 ```javascript
 // Component Documentation Example
@@ -1400,7 +1402,6 @@ export class AutoLogout {
 
 **Security Score: 2/10** 🔴
 
----
 
 ## 📊 Zusammenfassung aller Scores
 
@@ -1417,7 +1418,6 @@ export class AutoLogout {
 
 **Gesamtscore: 3.1/10** 🔴
 
----
 
 ## 🚨 KRITISCHE Fixes (MUST vor Veröffentlichung)
 
@@ -1504,7 +1504,6 @@ export class AutoLogout {
     - Alle Komponenten dokumentieren
     - Props/Events/Slots beschreiben
 
----
 
 ## ✅ Positive Aspekte (beibehalten!)
 
@@ -1516,7 +1515,6 @@ export class AutoLogout {
 6. ✅ **Router-Guards korrekt implementiert**
 7. ✅ **Vuelidate-Integration gelungen**
 
----
 
 ## 🎓 Lernwert-Bewertung
 
@@ -1534,7 +1532,6 @@ export class AutoLogout {
 - Tests als Lernbeispiele
 - Common Pitfalls dokumentieren
 
----
 
 ## 📋 Priorisierte TODO-Liste
 
@@ -1577,7 +1574,6 @@ export class AutoLogout {
 - [ ] Dark Mode Support
 ```
 
----
 
 ## 🎯 Empfehlung
 
