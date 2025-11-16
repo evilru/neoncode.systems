@@ -18,6 +18,13 @@ export default defineConfig({
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
+      },
+      {
+        text: 'Legal',
+        items: [
+          { text: 'Imprint', link: '/imprint' },
+          { text: 'Privacy', link: '/privacy' }
+        ]
       }
     ],
 
