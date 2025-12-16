@@ -6,7 +6,7 @@ export default defineConfig({
   description: "//neoncode.systems",
   base: '/',
   cleanUrls: true,
-
+  srcExclude: ['discovery/**'],
   head: [
     ['meta', { name: 'author', content: 'Martin Haberfellner' }],
     ['meta', { name: 'keywords', content: 'AI, prompts, prompt engineering, experiments, systems engineering, organizational systems' }],
