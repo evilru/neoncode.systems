@@ -45,6 +45,15 @@ The project uses **conventional commits** with git-cliff for changelog generatio
 ## Release Notes (reno)
 For significant changes, create structured release notes in `releasenotes/notes/*.yaml` with structure: `prelude`, `features`, `fixes`, `other`.
 
+## Discovery Sessions
+Discovery sessions are used to explore and document content concepts, features, and experiments before implementation. Discovery documents are stored in the `discovery/` folder and serve as:
+- Context documentation for AI agents
+- Content concepts for website sections
+- Requirements and design decisions
+- Reference for future implementation
+
+When conducting discovery sessions, store the final consolidated document in `discovery/` with a descriptive name.
+
 ## When Making Changes
 1. Use conventional commit messages for meaningful changelog entries
 2. For features/breaking changes, consider adding a reno release note
