@@ -22,9 +22,3 @@ features:
   - title: Why
     details: Because the best systems go unseen.
 ---
-
-<script setup>
-const appVersion = import.meta.env.VITE_APP_VERSION;
-</script>
-
-[v{{ appVersion }}](./version.md)
