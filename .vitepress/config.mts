@@ -4,8 +4,41 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "NEONCODE!",
   description: "//neoncode.systems",
+  base: '/',
+  cleanUrls: true,
+
+  head: [
+    ['meta', { name: 'author', content: 'Martin Haberfellner' }],
+    ['meta', { name: 'keywords', content: 'AI, prompts, prompt engineering, experiments, systems engineering, organizational systems' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'neoncode.systems' }],
+    ['meta', { property: 'og:title', content: 'neoncode.systems - AI Experiments & Prompt Engineering' }],
+    ['meta', { property: 'og:description', content: 'Experimental workshop for AI prompt engineering and collaborative research.' }],
+    ['meta', { property: 'og:locale', content: 'en_US' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: 'neoncode.systems - AI Experiments & Prompt Engineering' }],
+    ['meta', { name: 'twitter:description', content: 'Experimental workshop for AI prompt engineering and collaborative research.' }],
+    ['link', { rel: 'canonical', href: 'https://neoncode.systems/' }],
+    ['link', { rel: 'icon', href: '/favicon.ico' }]
+  ],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
+    search: {
+      provider: 'local'
+    },
+
+    editLink: {
+      pattern: 'https://github.com/evilru/neoncode.systems/edit/main/:path',
+      text: 'Edit this page on GitHub'
+    },
+
+    outline: {
+      level: [2, 3],
+      label: 'On this page'
+    },
+
     nav: [
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
