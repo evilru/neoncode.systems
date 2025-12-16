@@ -46,13 +46,21 @@ The project uses **conventional commits** with git-cliff for changelog generatio
 For significant changes, create structured release notes in `releasenotes/notes/*.yaml` with structure: `prelude`, `features`, `fixes`, `other`.
 
 ## Discovery Sessions
-Discovery sessions are used to explore and document content concepts, features, and experiments before implementation. Discovery documents are stored in the `discovery/` folder and serve as:
+Discovery sessions are used to explore and document content concepts, features, and experiments before implementation. Discovery documents are organized in the `discovery/` folder with a simple three-stage workflow:
+
+- `discovery/exploring/` - Work-in-progress discovery sessions and concepts being explored
+- `discovery/ready/` - Completed discovery documents ready for implementation
+- `discovery/implemented/` - Discovery documents that have been implemented
+
+Discovery documents serve as:
 - Context documentation for AI agents
 - Content concepts for website sections
 - Requirements and design decisions
 - Reference for future implementation
 
-When conducting discovery sessions, store the final consolidated document in `discovery/` with a descriptive name.
+**Workflow:** exploring → ready → implemented
+
+When conducting discovery sessions, store work-in-progress in `discovery/exploring/`, move to `discovery/ready/` when the concept is clear, and finally to `discovery/implemented/` once the implementation is complete.
 
 ## When Making Changes
 1. Use conventional commit messages for meaningful changelog entries
