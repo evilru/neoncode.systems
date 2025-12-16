@@ -1,76 +1,39 @@
 # Privacy Policy
 
-## General
+## Controller
 
-This privacy policy explains the type, scope and purpose of the processing of personal data (hereinafter referred to as "data") within our online offering and the associated websites, functions and content (hereinafter collectively referred to as "online offering").
-
-**Data Controller:**  
 Martin Haberfellner  
 Email: void@neoncode.systems
 
-## Hosting and Server Logs
+## Hosting, security & delivery (Cloudflare Pages)
 
-This website is hosted on **Cloudflare Pages**.
+This website is hosted and delivered via Cloudflare Pages (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). When you access the site, Cloudflare processes technical request data (including IP address, timestamp, requested URL, device/browser data, status codes, referrer if provided) to deliver the site and protect it against abuse (e.g., bot detection / rate limiting). These data may be personal data (in particular IP addresses).
 
-Every time you access this website, the following data is stored in server log files:
-- IP address of the accessing computer
-- Date and time of access
-- Name and URL of the retrieved file
-- Amount of data transferred
-- Message about successful retrieval (HTTP status code)
-- Browser type and version
-- Operating system
-- Referrer URL (previously visited page)
+**Legal basis:** Art. 6(1)(f) GDPR (legitimate interest in operating a secure, stable website).  
+Cloudflare acts as our processor (Art. 28 GDPR; DPA in place).
 
-This data is used exclusively to ensure trouble-free operation of the site and to improve our offering. It does not allow any conclusions to be drawn about your person.
+## Analytics (Cloudflare Web Analytics)
 
-**Legal basis:** Legitimate interest (Art. 6 para. 1 lit. f GDPR) in providing a functional website.
+We use Cloudflare Web Analytics to understand aggregate usage and improve the site. It is configured without marketing/advertising tracking.
 
-**Storage period:** The data is deleted as soon as it is no longer required for the purpose for which it was collected. This is usually after 7 days.
-
-**Hosting Provider:**  
-Cloudflare, Inc.  
-101 Townsend St.  
-San Francisco, CA 94107, USA
-
-Cloudflare is certified under the EU-US Data Privacy Framework.
-
-More information about Cloudflare's privacy policy:  
-https://www.cloudflare.com/privacypolicy/
+**Legal basis:** Art. 6(1)(f) GDPR.
 
 ## Cookies
 
-This website does **not use cookies**.
+We do not use cookies for marketing or advertising. Cloudflare's security features may set a strictly necessary cookie (e.g., "__cf_bm") to protect the website.
+
+**Legal basis:** Art. 6(1)(f) GDPR.
+
+## International transfers
+
+Cloudflare is a U.S. company. Data may be processed in the USA or other countries. Safeguards include the EU–U.S. Data Privacy Framework (where applicable) and EU Standard Contractual Clauses (Art. 46 GDPR).
 
 ## Contact
 
-When you contact us by email, the data you provide (email address, name if applicable, and other voluntary information) will be stored by us in order to process your request.
+If you email us, we process your message and contact details to respond.
 
-**Legal basis:** Consent (Art. 6 para. 1 lit. a GDPR) or legitimate interest in responding to your request (Art. 6 para. 1 lit. f GDPR).
+**Legal basis:** Art. 6(1)(b) GDPR and/or Art. 6(1)(f) GDPR.
 
-**Storage period:** This data will be deleted as soon as it is no longer required for the purpose for which it was collected, or if you request deletion.
+## Your rights
 
-## Your Rights
-
-You have the following rights with regard to personal data concerning you:
-
-- Right of access (Art. 15 GDPR)
-- Right to rectification (Art. 16 GDPR)
-- Right to erasure (Art. 17 GDPR)
-- Right to restriction of processing (Art. 18 GDPR)
-- Right to data portability (Art. 20 GDPR)
-- Right to object (Art. 21 GDPR)
-- Right to lodge a complaint with a supervisory authority (Art. 77 GDPR)
-
-**Austrian Data Protection Authority:**  
-Barichgasse 40-42  
-1030 Vienna, Austria  
-Phone: +43 1 52 152-0  
-Email: dsb@dsb.gv.at  
-Web: https://www.dsb.gv.at/
-
-## Changes to this Privacy Policy
-
-We reserve the right to adapt this privacy policy so that it always complies with current legal requirements or to implement changes to our services in the privacy policy.
-
-**Last updated:** November 2025
+You have rights of access, rectification, erasure, restriction, data portability, and objection (Arts. 15–21 GDPR), and the right to complain to a supervisory authority (Art. 77 GDPR). Austria: https://www.dsb.gv.at/
