@@ -40,14 +40,7 @@ When running `task build` or `task release`, the following happens in order:
 7. (release only) Version bumped, committed, tagged, and optionally pushed
 
 ## Conventional Commits & Changelog
-The project uses **conventional commits** with git-cliff for changelog generation. Commit format matters:
-- `feat:` → 🚀 Features
-- `fix:` → 🐛 Bug Fixes  
-- `docs:` → 📚 Documentation
-- `refactor:` → 🚜 Refactor
-- `chore(release):` → skipped from changelog
-
-See [cliff.toml](../cliff.toml) for complete parser rules.
+The project uses **conventional commits** with git-cliff for changelog generation.
 
 ## Release Notes (reno)
 For significant changes, create structured release notes in `releasenotes/notes/*.yaml` with structure: `prelude`, `features`, `fixes`, `other`.
