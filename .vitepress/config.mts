@@ -21,7 +21,11 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: 'https://neoncode.systems/' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
-
+  rewrites: {
+  'LICENSE.md': 'legal/license.md',
+  'CHANGELOG.md': 'version/changelog.md',
+  'RELEASE_NOTES.md': 'version/releasenotes.md'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
@@ -38,7 +42,6 @@ export default defineConfig({
       level: [2, 3],
       label: 'On this page'
     },
-
     nav: [
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
@@ -53,19 +56,28 @@ export default defineConfig({
     ],
     footer: {
       message: 'Human 🤝 AI collaboration',
-      copyright: '&copy; 2025 Martin Haberfellner · All Rights Reserved | <a href="/imprint">Imprint</a> | <a href="/privacy">Privacy</a> | <a href="/LICENSE">License</a>'
+      copyright: '&copy; 2025 Martin Haberfellner · All Rights Reserved | <a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>'
     },
     sidebar: {
-      // '/': [
-      //   {
-      //     text: 'Legal',
-      //     items: [
-      //       { text: 'Imprint', link: '/imprint.md' },
-      //       { text: 'Privacy', link: '/privacy.md' },
-      //       { text: 'License', link: '/LICENSE.md' }
-      //     ]
-      //   }
-      // ],
+      '/version': [
+        {
+          text: 'Version',
+          items: [
+            { text: 'Release Notes', link: '/version/releasenotes.md' },
+            { text: 'Changelog', link: '/version/changelog.md' }
+          ]
+        }
+      ],
+      '/legal/': [
+        {
+          text: 'Legal',
+          items: [
+            { text: 'Imprint', link: '/legal/imprint.md' },
+            { text: 'Privacy', link: '/legal/privacy.md' },
+            { text: 'License', link: '/legal/license.md' }
+          ]
+        }
+      ],
       '/proto.labs/': [
         {
           text: '//proto.labs',

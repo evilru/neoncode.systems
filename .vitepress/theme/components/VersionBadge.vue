@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <a :href="`/version`">
+  <a :href="`/version/releasenotes`">
     <VPBadge type="info" :text="version" class="badge"/>
   </a>
 </template>
