@@ -28,6 +28,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    siteTitle: 'NC!',
     externalLinkIcon: true,
     search: {
       provider: 'local'
