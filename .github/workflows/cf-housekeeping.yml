@@ -19,7 +19,7 @@ jobs:
             keep="${entry##*:}"
             echo "Processing environment: $env (keep last $keep deployments)"
 
-            deployments=$(curl -sS -H "Authorization: Bearer $API_TOKEN" "$API_URL?environment=$env")
+            deployments=$(curl -sS -H "Authorization: Bearer $API_TOKEN" "$API_URL?env=$env")
             if ! echo "$deployments" | jq -e '.success == true' >/dev/null 2>&1; then
               echo "Cloudflare API error for env $env:"
               echo "$deployments" | jq '.errors, .messages' || echo "$deployments"
