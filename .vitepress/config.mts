@@ -28,7 +28,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-
+    externalLinkIcon: true,
     search: {
       provider: 'local'
     },
