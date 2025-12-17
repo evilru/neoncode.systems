@@ -14,8 +14,6 @@ Prompts written with WSPL are designed to be more resilient, adaptable, and effe
 **How you can participate:**  
 Head over to [//prompt.forge](/prompt.forge/) to see WSPL in action and join the experiment.
 
----
-
 ## Philosophy
 
 This is not a portfolio of polished products – it's a laboratory.  
@@ -26,8 +24,6 @@ Experiments here are:
 - **Iterative**: Nothing is "finished", everything learns
 
 Think of this as open research. Snapshots of exploration, not production tools.
-
----
 
 ## Get Involved
 
