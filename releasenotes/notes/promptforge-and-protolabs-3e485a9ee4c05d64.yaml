@@ -26,6 +26,9 @@ features:
     Twitter Cards), local search provider, GitHub edit links, and custom footer
     with legal links and "Human 🤝 AI collaboration" message.
   - |
+    Configured separate site title for navigation (NC!) and browser title
+    (NEONCODE!) using siteTitle in theme config.
+  - |
     Added GitHub templates for prompt-forge repository including README structure,
     issue templates for job submission, and participation guidelines.
   - |
