@@ -1,11 +1,12 @@
 # \/\/prompt.forge
 
-A living laboratory for testing WSPL through Job-to-be-Done prompts.
+A living laboratory for testing [WSPL](/proto.labs/) (my method for prompt design) through Job-to-be-Done prompts.
 
 ## The Experiment
 
-What if we could compare two approaches to prompt writing side-by-side?  
-That's exactly what we're doing here.
+For me, WSPL prompts work exceptionally well. Through this experiment, you help me test whether that's true for others too.
+
+Here's how it works – comparing two approaches to prompt writing side-by-side:
 
 ### How It Works
 
@@ -18,19 +19,21 @@ That's exactly what we're doing here.
 4. **Community Votes** (if needed)  
    When multiple submissions come in, the community votes on which jobs to tackle first.
 5. **WSPL Version Created**  
-   I'll create an alternative version using WSPL methodology.
+   I'll create an alternative version using WSPL.
 6. **Compare & Vote**  
    Test both prompts with your AI. Vote on which works better for you – subjectively, honestly.
 
 ## Why This Matters
 
-This isn't about proving WSPL is "better" – it's about learning:
+Your feedback helps answer the question: Do WSPL prompts work exceptionally well for others too?
 
-- Where does WSPL excel?  
-- Where does it need refinement?  
-- What patterns emerge from real-world usage?
+Through this experiment, you:
 
-You become part of the research process. Your feedback directly shapes the evolution of WSPL.
+- Test real-world prompts in your own context
+- Share what works (and what doesn't)
+- Help shape the evolution of the method
+
+This is open research. Your experience matters.
 
 ## Get Started
 

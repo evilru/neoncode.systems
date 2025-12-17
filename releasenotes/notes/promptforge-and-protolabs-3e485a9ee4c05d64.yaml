@@ -7,13 +7,13 @@ prelude: >
     a discovery workflow for content development, and enhanced SEO optimization.
 features:
   - |
-    Added proto.labs experimental workshop section with detailed description
-    of the prompt engineering methodology and invitation for community
-    participation.
+    Added proto.labs experimental workshop section introducing WSPL (my method
+    for prompt design, developed through practice) with invitation for community
+    participation through prompt.forge experiment.
   - |
     Added prompt.forge section documenting the Jobs-to-be-Done prompt generator
-    experiment, including complete user journey (11 steps), community voting
-    mechanism, and FAQ.
+    experiment for testing WSPL methodology, including complete user journey
+    (11 steps), community voting mechanism, and FAQ.
   - |
     Implemented discovery session workflow with three-stage folder structure
     (exploring/ready/implemented) for content concept development and documentation
