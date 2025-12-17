@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.2.0-basis-setup.16] - 2025-12-17
+
+### 🚀 Features
+
+- ✨ Add privacy section including imprint and privacy policy
+- ✨ Add github and linked social links
+- ✨ Add AI agent instructions and VSCode settings for commit message generation
+- ✨ Add discovery sessions section for content exploration and documentation
+- ✨ Add content concept document outlining project structure and experiment details
+- ✨ Enhance prompt.forge and proto.labs documentation with detailed experiment descriptions and participation guidelines
+- ✨ Add discovery session workflow and GitHub templates for prompt-forge repository
+- ✨ Revise privacy policy for clarity and compliance with GDPR
+- ✨ Update VitePress configuration with footer and sidebar structure
+- ✨ Enhance VitePress configuration with meta tags, search provider, and edit link
+- ✨ Exclude discovery folder from source processing in VitePress configuration
+- ✨ Add VersionBadge component and integrate version display in layout
+
+### 🐛 Bug Fixes
+
+- 🐛 Correct API query parameter from 'environment' to 'env' in Cloudflare housekeeping workflow
+
+### ⚙️ Miscellaneous Tasks
+
+- 📝 Add proto.labs, prompt.forge and license
+- 📝 Simplify conventional commits section in copilot instructions
+- 👷 Add comment to clarify force deletion option in Cloudflare housekeeping workflow
 ## [0.1.1] - 2025-11-05
 
 ### ⚙️ Miscellaneous Tasks
