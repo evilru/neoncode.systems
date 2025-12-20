@@ -40,6 +40,11 @@ features:
   - |
     Configured AI agent instructions for content development workflow and
     conventional commit message generation.
+  - |
+    Added comprehensive README.md documenting project structure, tech stack,
+    development workflow, and complete setup guide including semantic versioning
+    automation, changelog generation, release notes management, and CI/CD pipeline
+    with GitHub Releases and environment deployments.
 fixes:
   - |
     Fixed Cloudflare Pages housekeeping workflow to use correct API query
