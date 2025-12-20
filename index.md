@@ -16,9 +16,9 @@ hero:
 
 features:
   - title: What This Is
-    details: A space for building AI-powered tools and learning in public. //proto.labs for experiments & proof-of-concepts.
+    details: Experiments. Currently focused on AI. Learning in public.
   - title: Who
     details: Martin Haberfellner — Organizational Systems Engineer. Building the invisible infrastructure that makes teams work.
   - title: Why
-    details: Because the best systems go unseen.
+    details: Because the best systems go unnoticed.
 ---
