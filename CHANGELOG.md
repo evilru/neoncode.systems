@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.0] - 2026-02-17
+
+### 🚀 Features
+
+- ✨ Add Job To Be Done and Learning Zone Mode prompts with dynamic sidebar generation
 ## [0.2.2] - 2026-02-17
 
 ### 📚 Documentation
