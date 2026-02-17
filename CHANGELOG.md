@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0-basis-setup.16] - 2025-12-17
+## [0.2.0] - 2026-02-17
 
 ### 🚀 Features
 
@@ -8,24 +8,44 @@
 - ✨ Add github and linked social links
 - ✨ Add AI agent instructions and VSCode settings for commit message generation
 - ✨ Add discovery sessions section for content exploration and documentation
-- ✨ Add content concept document outlining project structure and experiment details
 - ✨ Enhance prompt.forge and proto.labs documentation with detailed experiment descriptions and participation guidelines
-- ✨ Add discovery session workflow and GitHub templates for prompt-forge repository
+- ✨ Add discovery session workflow
 - ✨ Revise privacy policy for clarity and compliance with GDPR
 - ✨ Update VitePress configuration with footer and sidebar structure
 - ✨ Enhance VitePress configuration with meta tags, search provider, and edit link
 - ✨ Exclude discovery folder from source processing in VitePress configuration
 - ✨ Add VersionBadge component and integrate version display in layout
+- ✨ Enable external link icon in theme configuration
+- ✨ Add site title to theme configuration
+- ✨ Update prompt.forge, protolabs and relnotes  for WSPL methodology and prompt engineering experiment
 
 ### 🐛 Bug Fixes
 
 - 🐛 Correct API query parameter from 'environment' to 'env' in Cloudflare housekeeping workflow
+
+### 🚜 Refactor
+
+- 💬 Update text shown on homepage to reflect the vision
+
+### 📚 Documentation
+
+- 📝 Add release notes for proto.labs, prompt.forge and the version badge
+- 📝 Add SiteTitle and title config to the releasenotes
+- 📝 Add Readme
+- 📝 Add Readme to Release Notes
+- 📝 Update link to the jobs to be done prompt
+- 📝 Remove AI notice from footer and relnote, update to current year
 
 ### ⚙️ Miscellaneous Tasks
 
 - 📝 Add proto.labs, prompt.forge and license
 - 📝 Simplify conventional commits section in copilot instructions
 - 👷 Add comment to clarify force deletion option in Cloudflare housekeeping workflow
+- 🚚 Move legal documents and update navigation for improved accessibility
+- 📝 Remove redundant formatting and clean up markdown in prompt.forge and proto.labs overview
+- 📝 Update .gitignore to include discovery
+- 💚 Append force=true for deleting preview deployments
+- 👷 Allow 50 preview deployments instead of 20 to keep older branches available
 ## [0.1.1] - 2025-11-05
 
 ### ⚙️ Miscellaneous Tasks
