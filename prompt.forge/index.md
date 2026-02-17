@@ -1,6 +1,6 @@
 # \/\/prompt.forge
 
-A living laboratory for testing [WSPL](/proto.labs/) (my method for prompt design) through Job-to-be-Done prompts.
+A living laboratory for testing [WSPL](/proto.labs/#wspl-my-method-for-prompt-design) (my method for prompt design) through Job-to-be-Done prompts.
 
 ## The Experiment
 
