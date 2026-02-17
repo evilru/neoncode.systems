@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.1] - 2026-02-17
+
+### 📚 Documentation
+
+- 📝 Remove AI notice from readme footer
 ## [0.2.0] - 2026-02-17
 
 ### 🚀 Features
