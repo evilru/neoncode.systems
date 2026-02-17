@@ -1,8 +1,11 @@
 <script setup>
-const appVersion = import.meta.env.VITE_APP_VERSION;
+import { getCurrentInstance } from 'vue'
+
+const instance = getCurrentInstance()
+const version = instance?.appContext.config.globalProperties.$version
 </script>
 
-# Version v{{ appVersion }}
+# Version {{ version }}
 
 * [CHANGELOG](./CHANGELOG.md)
 * [RELEASE_NOTES](./RELEASE_NOTES.md)

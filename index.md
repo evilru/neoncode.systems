@@ -5,26 +5,20 @@ layout: home
 hero:
   name: "NEONCODE!"
   text: "//neoncode.systems"
-  tagline: My great project tagline
+  tagline: Making systems visible
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Explore //proto.labs
+      link: /proto.labs/
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Browse //prompt.forge
+      link: /prompt.forge
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: What This Is
+    details: Experiments. Currently focused on AI. Learning in public.
+  - title: Who
+    details: Martin Haberfellner — Organizational Systems Engineer. Building the invisible infrastructure that makes teams work.
+  - title: Why
+    details: Because the best systems go unnoticed.
 ---
-
-<script setup>
-const appVersion = import.meta.env.VITE_APP_VERSION;
-</script>
-
-[v{{ appVersion }}](./version.md)
