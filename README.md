@@ -129,6 +129,3 @@ A separate workflow manages Cloudflare deployment cleanup, maintaining organizat
 ---
 
 **Martin Haberfellner** | Organizational Systems Engineer
-
-Human 🤝 AI collaboration
-
