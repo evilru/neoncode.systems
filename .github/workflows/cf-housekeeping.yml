@@ -35,7 +35,9 @@ jobs:
             for deployment in $deployment_ids; do
               if [ -n "$deployment" ]; then
                 echo "Deleting $env deployment $deployment"
-                del=$(curl -sS -w "\n%{http_code}" -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$deployment") # add ?force=true to delete even if active
+                force_param=""
+                [ "$env" = "preview" ] && force_param="?force=true"
+                del=$(curl -sS -w "\n%{http_code}" -X DELETE -H "Authorization: Bearer $API_TOKEN" "$API_URL/$deployment$force_param")
                 code=$(echo "$del" | tail -n1)
                 body=$(echo "$del" | sed '$d')
                 if [ "$code" -ge 400 ]; then
