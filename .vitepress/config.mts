@@ -1,4 +1,27 @@
 import { defineConfig } from 'vitepress'
+import fs from 'fs'
+import path from 'path'
+
+// Helper function to generate sidebar items from directory
+function getSidebarItems(dir: string, basePath: string) {
+  const files = fs.readdirSync(dir)
+    .filter((name) => name.endsWith('.md') && name !== 'index.md')
+    .map((name) => {
+      const title = name
+        .replace('.md', '')
+        .replace(/\.prompt$/, '')
+        .split(/[-.]/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+      
+      return {
+        text: title,
+        link: `${basePath}${name}`
+      }
+    })
+  
+  return files
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -84,6 +107,7 @@ export default defineConfig({
           text: '//proto.labs',
           items: [
             { text: 'Overview', link: '/proto.labs/index.md' },
+            ...getSidebarItems('proto.labs', '/proto.labs/')
           ]
         }
       ],
@@ -92,6 +116,7 @@ export default defineConfig({
           text: '//prompt.forge',
           items: [
             { text: 'Overview', link: '/prompt.forge/index.md' },
+            ...getSidebarItems('prompt.forge', '/prompt.forge/')
           ]
         }
       ]

@@ -1,0 +1,44 @@
+---
+prelude: >
+    This release introduces two WSPL-based prompt templates to proto.labs,
+    showcasing field-based prompt design principles in practice. Both prompts
+    are production-ready and serve as reference implementations of the WSPL
+    methodology, available for immediate use and experimentation. The release
+    includes enhanced navigation through dynamic sidebar generation and clear
+    calls-to-action for community participation.
+features:
+  - |
+    Added Job To Be Done (JTBD) Interview Coach prompt – a meta-prompt that
+    guides users through adaptive JTBD interviews to generate custom prompts.
+    Produces two artifacts: comprehensive job documentation and an optimized
+    prompt tailored to specific requirements. Based on Bob Moesta's JTBD
+    methodology with WSPL field-based design.
+  - |
+    Added Learning Zone Mode prompt – an adaptive teaching assistant that
+    maintains users in their optimal learning zone. Detects comfort, learning,
+    and panic zones, adjusting teaching style accordingly to prevent skill
+    atrophy while building understanding. Maps to Vygotsky's Zone of Proximal
+    Development with constructionist learning principles.
+  - |
+    Implemented dynamic sidebar generation for proto.labs and prompt.forge
+    sections using getSidebarItems() helper function, automatically discovering
+    and displaying markdown files with proper title formatting.
+  - |
+    Added "Share Your Experience" and "Need Something Custom?" sections to
+    prompt pages with clear calls-to-action linking to prompt.forge experiment
+    and GitHub discussions.
+  - |
+    Enhanced proto.labs index with WSPL methodology explanation, dogfooding
+    statement ("I use only WSPL prompts now"), and expectation management for
+    custom prompt requests (~1 per week).
+other:
+  - |
+    Prompts are included via VitePress @include directive from .github/prompts/
+    source files, maintaining single source of truth while displaying as
+    copyable code blocks.
+  - |
+    Updated proto.labs philosophy to position it as personal experimental
+    workshop with transparent, participatory, and iterative research approach.
+  - |
+    Added expectation management across prompt.forge indicating selected cases
+    are worked on approximately weekly basis.
