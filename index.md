@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "NEONCODE!"
   text: "//neoncode.systems"
-  tagline: Making systems visible
+  tagline: Revealing invisible systems
   actions:
     - theme: brand
       text: Explore //proto.labs
@@ -20,5 +20,5 @@ features:
   - title: Who
     details: Martin Haberfellner — Organizational Systems Engineer. Building the invisible infrastructure that makes teams work.
   - title: Why
-    details: Because the best systems go unnoticed.
+    details: The best systems go unnoticed.
 ---

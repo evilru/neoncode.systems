@@ -1,6 +1,6 @@
 # \/\/proto.labs
 
-Welcome to my experimental workshop – a space where ideas take shape, get tested, and evolve through practice.
+My experimental workshop – where ideas take shape, get tested, and evolve through practice.
 
 ## Current Experiments
 
@@ -8,9 +8,21 @@ Welcome to my experimental workshop – a space where ideas take shape, get test
 
 WSPL – my method for prompt design, developed through practice.
 
-For me, they work exceptionally well. Through [//prompt.forge](/prompt.forge/), I'm testing whether that's true for others too.
+For me, they work exceptionally well. I use only WSPL prompts now – for all my work with AI. Through [//prompt.forge](/prompt.forge/), I'm testing whether that's true for others too.
 
-See it in action. Join the experiment.
+The prompts below are built with WSPL. I'm sharing them so you can experiment and test for yourself. That's the experiment.
+
+### Job To Be Done Prompt
+
+Writing good prompts is hard. Most people don't realize how much unstated context affects the result. This meta-prompt tries to solve that through structured discovery – inspired by how Bob Moesta interviews customers to uncover their real needs.
+
+**→ [Try the JTBD Interview](/proto.labs/job-to-be-done.md)**
+
+### Learning Zone Mode Prompt
+
+AI can make you lazy. Copy-paste solutions without understanding. This prompt tries to turn your AI into an adaptive teacher – one that keeps you learning instead of atrophying. Inspired by constructionist learning theory: you build understanding, not just collect answers.
+
+**→ [Activate Learning Zone Mode](/proto.labs/learning-zone-mode.md)**
 
 ## Philosophy
 
@@ -25,6 +37,10 @@ Think of this as open research. Snapshots of exploration, not production tools.
 
 ## Get Involved
 
-Interested in experimenting together? Check out the active experiments above, explore the repositories, and join the conversation on GitHub.
+**Tried the prompts?** [Share your experience](https://github.com/evilru/prompt.forge)
+
+**Need a custom prompt?** Submit your use case – I'll create a WSPL version for you
+
+**Want to discuss?** Join the [discussions](https://github.com/evilru/prompt.forge/discussions)
 
 Let's build, test, and learn together.
