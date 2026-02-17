@@ -56,8 +56,8 @@ export default defineConfig({
       // }
     ],
     footer: {
-      message: 'Human 🤝 AI collaboration',
-      copyright: '&copy; 2025 Martin Haberfellner · All Rights Reserved | <a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>'
+      message: '<a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>',
+      copyright: '&copy; 2026 Martin Haberfellner · All Rights Reserved'
     },
     sidebar: {
       '/version': [

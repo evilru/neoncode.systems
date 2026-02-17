@@ -1,6 +1,6 @@
 # License
 
-Copyright &copy; 2025 Martin Haberfellner
+Copyright &copy; 2026 Martin Haberfellner
 
 All rights reserved.
 

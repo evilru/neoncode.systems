@@ -24,7 +24,7 @@ features:
   - |
     Enhanced VitePress configuration with comprehensive SEO meta tags (Open Graph,
     Twitter Cards), local search provider, GitHub edit links, and custom footer
-    with legal links and "Human 🤝 AI collaboration" message.
+    with legal links.
   - |
     Configured separate site title for navigation (NC!) and browser title
     (NEONCODE!) using siteTitle in theme config.
