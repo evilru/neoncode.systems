@@ -39,7 +39,7 @@ This is open research. Your experience matters.
 
 ### Ready to Participate?
 
-**→ [Get the Job-to-be-Done Interview Prompt](https://github.com/neoncode-systems/prompt-forge)**
+**→ [Get the Job-to-be-Done Interview Prompt](https://github.com/evilru/prompt.forge)**
 
 Head to the GitHub repository to:
 
