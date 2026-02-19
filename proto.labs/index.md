@@ -1,16 +1,19 @@
 # \/\/proto.labs
 
-My experimental workshop – where ideas take shape, get tested, and evolve through practice.
+> "I've never done it before, so I'm sure it'll work."
+> — Pippi Longstocking
+
+You won't learn without trying. And you won't find out what's possible.
 
 ## Current Experiments
 
-### WSPL: My Method for Prompt Design
+### My Method for Prompt Design
 
-WSPL – my method for prompt design, developed through practice.
+My method for prompt design, developed through practice.
 
-For me, they work exceptionally well. I use only WSPL prompts now – for all my work with AI. Through [//prompt.forge](/prompt.forge/), I'm testing whether that's true for others too.
+For me, they work exceptionally well. I use only these prompts now – for all my work with AI. Through [//prompt.forge](/prompt.forge/), I'm testing whether that's true for others too.
 
-The prompts below are built with WSPL. I'm sharing them so you can experiment and test for yourself. That's the experiment.
+The prompts below are built with this method. I'm sharing them so you can experiment and test for yourself. That's the experiment.
 
 ### Job To Be Done Prompt
 
