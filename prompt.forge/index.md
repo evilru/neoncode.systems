@@ -1,10 +1,10 @@
 # \/\/prompt.forge
 
-A living laboratory for testing [WSPL](/proto.labs/#wspl-my-method-for-prompt-design) (my method for prompt design) through real-world use cases.
+A living laboratory for testing [my prompt design method](/proto.labs/#my-method-for-prompt-design) through real-world use cases.
 
 ## The Experiment
 
-For me, WSPL prompts work exceptionally well. Through this experiment, I'm testing whether that's true for others too.
+For me, these prompts work exceptionally well. Through this experiment, I'm testing whether that's true for others too.
 
 ### How It Works
 
