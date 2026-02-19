@@ -19,7 +19,7 @@ The prompts below are built with this method. I'm sharing them so you can experi
 
 Writing good prompts is hard. Most people don't realize how much unstated context affects the result. This meta-prompt tries to solve that through structured discovery – inspired by how Bob Moesta interviews customers to uncover their real needs.
 
-**→ [Try the JTBD Interview](/proto.labs/job-to-be-done.md)**
+**→ [Try the Job To Be Done Interview](/proto.labs/job-to-be-done.md)**
 
 ### Learning Zone Mode Prompt
 
