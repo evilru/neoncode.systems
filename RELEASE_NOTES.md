@@ -1,15 +1,45 @@
 # Release Notes
 
+## v0.3.1
+
+### Prelude
+
+Reworked site positioning and messaging across all pages. The site now
+leads with a clear standpoint instead of generic descriptions. Internal
+method naming (WSPL) has been removed from all public-facing content --
+the method speaks through the prompts, not the label.
+
+### New Features
+
+- Homepage now opens with a manifest-style tagline and three positioning
+  blocks replacing the generic \"What This Is / Who / Why\" structure.
+  Tagline: \"AI amplifies what\'s already there. Shit in, shit out.
+  That\'s not a tool problem.\"
+- proto.labs now opens with a Pippi Longstocking quote and a one-line
+  rationale for experimentation, establishing tone before describing the
+  lab contents.
+
+### Other Notes
+
+- WSPL removed as a public-facing label across the website and the
+  prompt.forge GitHub repository. The prompt design method is now
+  referenced as \"my method\" with a neutral anchor link.
+- Job-to-be-Done prompt page now opens with the problem statement
+  (\"Writing good prompts is hard\...\") and uses the full term
+  \"Jobs-to-be-Done\" instead of the JTBD abbreviation.
+- Learning Zone Mode prompt page now leads with the provocative opener
+  \"AI can make you lazy.\" and has been tightened for clarity.
+
 ## v0.3.0
 
 ### Prelude
 
 This release introduces two WSPL-based prompt templates to proto.labs,
-showcasing field-based prompt design principles in practice. Both
-prompts are production-ready and serve as reference implementations of
-the WSPL methodology, available for immediate use and experimentation.
-The release includes enhanced navigation through dynamic sidebar
-generation and clear calls-to-action for community participation.
+showcasing prompt design principles in practice. Both prompts are
+production-ready and serve as reference implementations of the WSPL
+methodology, available for immediate use and experimentation. The
+release includes enhanced navigation through dynamic sidebar generation
+and clear calls-to-action for community participation.
 
 ### New Features
 
@@ -17,7 +47,7 @@ generation and clear calls-to-action for community participation.
   that guides users through adaptive JTBD interviews to generate custom
   prompts. Produces two artifacts: comprehensive job documentation and
   an optimized prompt tailored to specific requirements. Based on Bob
-  Moesta\'s JTBD methodology with WSPL field-based design.
+  Moesta\'s JTBD methodology with WSPL design.
 - Added Learning Zone Mode prompt -- an adaptive teaching assistant that
   maintains users in their optimal learning zone. Detects comfort,
   learning, and panic zones, adjusting teaching style accordingly to
@@ -31,13 +61,12 @@ generation and clear calls-to-action for community participation.
 - Added \"Share Your Experience\" and \"Need Something Custom?\"
   sections to prompt pages with clear calls-to-action linking to
   prompt.forge experiment and GitHub discussions.
-- Enhanced proto.labs index with WSPL methodology explanation,
-  dogfooding statement (\"I use only WSPL prompts now\"), and
+- Enhanced proto.labs index with WSPL methodology explanation, and
   expectation management for custom prompt requests (\~1 per week).
 
 ### Other Notes
 
-- Prompts are included via VitePress \@include directive from
+- Prompts are included via VitePress include directive from
   .github/prompts/ source files, maintaining single source of truth
   while displaying as copyable code blocks.
 - Updated proto.labs philosophy to position it as personal experimental

@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.1] - 2026-02-19
+
+### 🐛 Bug Fixes
+
+- 🐛 Correct minor wording issues in release notes for JTBD and Learning Zone Mode prompts
+- 🐛 Update tagline and feature descriptions for clarity and engagement
+- 🐛 Clarify prompt design method description in prompt.forge
+- 🐛 Update introduction and method description for clarity in proto.labs
+- 🐛 Improve clarity in Job To Be Done prompt description
+- 🐛 Revise description for Learning Zone Mode to enhance clarity and engagement
+- 🐛 Update prompt descriptions for clarity and consistency
+- 🐛 Correct prompt link description for consistency
+
+### 📚 Documentation
+
+- :memo: Add Release Notes
 ## [0.3.0] - 2026-02-17
 
 ### 🚀 Features
