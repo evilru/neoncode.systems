@@ -1,7 +1,7 @@
 ---
 prelude: >
     This release introduces two WSPL-based prompt templates to proto.labs,
-    showcasing field-based prompt design principles in practice. Both prompts
+    showcasing prompt design principles in practice. Both prompts
     are production-ready and serve as reference implementations of the WSPL
     methodology, available for immediate use and experimentation. The release
     includes enhanced navigation through dynamic sidebar generation and clear
@@ -12,7 +12,7 @@ features:
     guides users through adaptive JTBD interviews to generate custom prompts.
     Produces two artifacts: comprehensive job documentation and an optimized
     prompt tailored to specific requirements. Based on Bob Moesta's JTBD
-    methodology with WSPL field-based design.
+    methodology with WSPL design.
   - |
     Added Learning Zone Mode prompt – an adaptive teaching assistant that
     maintains users in their optimal learning zone. Detects comfort, learning,
@@ -28,12 +28,11 @@ features:
     prompt pages with clear calls-to-action linking to prompt.forge experiment
     and GitHub discussions.
   - |
-    Enhanced proto.labs index with WSPL methodology explanation, dogfooding
-    statement ("I use only WSPL prompts now"), and expectation management for
-    custom prompt requests (~1 per week).
+    Enhanced proto.labs index with WSPL methodology explanation, and 
+    expectation management for custom prompt requests (~1 per week).
 other:
   - |
-    Prompts are included via VitePress @include directive from .github/prompts/
+    Prompts are included via VitePress include directive from .github/prompts/
     source files, maintaining single source of truth while displaying as
     copyable code blocks.
   - |
