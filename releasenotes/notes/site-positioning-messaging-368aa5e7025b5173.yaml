@@ -1,0 +1,28 @@
+---
+prelude: >
+    Reworked site positioning and messaging across all pages. The site now
+    leads with a clear standpoint instead of generic descriptions. Internal
+    method naming (WSPL) has been removed from all public-facing content –
+    the method speaks through the prompts, not the label.
+features:
+  - |
+    Homepage now opens with a manifest-style tagline and three positioning
+    blocks replacing the generic "What This Is / Who / Why" structure.
+    Tagline: "AI amplifies what's already there. Shit in, shit out.
+    That's not a tool problem."
+  - |
+    proto.labs now opens with a Pippi Longstocking quote and a one-line
+    rationale for experimentation, establishing tone before describing
+    the lab contents.
+other:
+  - |
+    WSPL removed as a public-facing label across the website and the
+    prompt.forge GitHub repository. The prompt design method is now
+    referenced as "my method" with a neutral anchor link.
+  - |
+    Job-to-be-Done prompt page now opens with the problem statement
+    ("Writing good prompts is hard...") and uses the full term
+    "Jobs-to-be-Done" instead of the JTBD abbreviation.
+  - |
+    Learning Zone Mode prompt page now leads with the provocative opener
+    "AI can make you lazy." and has been tightened for clarity.
