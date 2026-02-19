@@ -42,7 +42,7 @@ Think of this as open research. Snapshots of exploration, not production tools.
 
 **Tried the prompts?** [Share your experience](https://github.com/evilru/prompt.forge)
 
-**Need a custom prompt?** Submit your use case – I'll create a WSPL version for you
+**Want an improved prompt?** Submit your use case – I'll create a custom version for you
 
 **Want to discuss?** Join the [discussions](https://github.com/evilru/prompt.forge/discussions)
 
