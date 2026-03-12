@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behaviour Priming — //prompt.forge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/markdown.min.js"></script>
+  <style>
+    /* Override hljs background to match our dark theme */
+    .hljs { background: transparent !important; }
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #0f0f12;
+      --color-surface: #1a1a22;
+      --color-surface-2: #22222e;
+      --color-border: rgba(255,255,255,0.08);
+      --color-text: #e4e4e7;
+      --color-muted: #71717a;
+      --color-brand-1: #bd34fe;
+      --color-brand-2: #41d1ff;
+      --gradient: linear-gradient(120deg, #bd34fe 0%, #41d1ff 100%);
+      --gradient-text: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff 100%);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,18,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-logo span {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-badge {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-brand-1);
+      background: rgba(189,52,254,0.12);
+      border: 1px solid rgba(189,52,254,0.25);
+      border-radius: 99px;
+      padding: 3px 10px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(189,52,254,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-brand-2);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 80px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+    }
+    .hero-tagline {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 400;
+      color: var(--color-muted);
+      margin-bottom: 16px;
+    }
+    .hero-tagline em {
+      font-style: normal;
+      color: var(--color-text);
+    }
+    .hero-description {
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-size: 16px;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: var(--color-surface-2);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    /* ── Section layout ── */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    section + section {
+      border-top: 1px solid var(--color-border);
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-brand-1);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 17px;
+      color: var(--color-muted);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* ── How it works — steps ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .step {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      position: relative;
+    }
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gradient);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      font-size: 14px;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+    .step-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-muted);
+      font-size: 20px;
+      padding-top: 36px;
+    }
+    @media (max-width: 600px) {
+      .step-connector { display: none; }
+    }
+
+    /* ── Use cases ── */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .use-case {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .use-case-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .use-case h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .use-case p {
+      font-size: 14px;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Prompt example ── */
+    .prompt-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .prompt-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--color-surface-2);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    .prompt-box-header .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-border);
+    }
+    .dot:nth-child(1) { background: #ff5f57; }
+    .dot:nth-child(2) { background: #febc2e; }
+    .dot:nth-child(3) { background: #28c840; }
+    .prompt-body {
+      padding: 28px 24px;
+      font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--color-text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .prompt-key {
+      color: var(--color-brand-1);
+      font-weight: 700;
+    }
+    .prompt-value {
+      color: var(--color-text);
+    }
+    .prompt-path {
+      color: var(--color-brand-2);
+    }
+    .prompt-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface-2);
+    }
+    .prompt-note {
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    .prompt-note strong {
+      color: var(--color-text);
+    }
+
+    /* ── Comparison ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 560px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+    .compare-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .compare-card.highlight {
+      border-color: rgba(189,52,254,0.4);
+      background: rgba(189,52,254,0.05);
+    }
+    .compare-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .compare-card ul li {
+      font-size: 14px;
+      color: var(--color-muted);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .compare-card ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--color-border);
+    }
+    .compare-card.highlight ul li::before {
+      content: "✓";
+      color: var(--color-brand-1);
+    }
+    .compare-card.highlight ul li {
+      color: var(--color-text);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 80px 24px;
+      border-top: 1px solid var(--color-border);
+    }
+    .cta-section h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      color: var(--color-muted);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    /* ── Theater quote ── */
+    .theater-quote {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+    blockquote {
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    blockquote::before {
+      content: "\201C";
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.4em;
+      line-height: 0;
+      vertical-align: -0.2em;
+      margin-right: 4px;
+    }
+    blockquote::after {
+      content: "\201D";
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.4em;
+      line-height: 0;
+      vertical-align: -0.2em;
+      margin-left: 4px;
+    }
+
+    /* ── Copy button ── */
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .copy-btn:hover {
+      color: var(--color-text);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ── Jump link ── */
+    .jump-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--color-brand-2);
+      text-decoration: none;
+    }
+    .jump-link:hover { text-decoration: underline; }
+
+    /* ── Scrollable prompt body ── */
+    .prompt-body-scroll {
+      max-height: 400px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .prompt-body-scroll::-webkit-scrollbar { width: 5px; }
+    .prompt-body-scroll::-webkit-scrollbar-track { background: transparent; }
+    .prompt-body-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--color-border);
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    footer a {
+      color: var(--color-muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--color-text); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-logo" href="https://neoncode.systems">//neoncode.<span>systems</span></a>
+    <span class="nav-badge">// prompt.forge</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="hero-label">Prompting Method</span>
+    <h1>Behaviour Priming</h1>
+    <p class="hero-tagline">Let the LLM <em>do the thinking.</em></p>
+    <p class="hero-description">
+      Stop writing workflows. Define how your AI should behave and what outcome you need —
+      then let it find the best path on its own.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#example">See the Minimal Prompt</a>
+      <a class="btn btn-secondary" href="#charged-prompt">See the Charged Prompt</a>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <section id="how-it-works">
+    <p class="section-label">Method</p>
+    <h2 class="section-title">Prime the behaviour. Define the outcome.<br>Let go.</h2>
+    <p class="section-lead">
+      Instead of scripting every step, you set the stage. Two inputs. One autonomous agent.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Define Behaviour</h3>
+        <p>Describe how the LLM should think, act, and interact. Give it a character, a stance, a way of operating — not a script.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Define Outcome</h3>
+        <p>Specify what success looks like. What should exist when the session is over? Files, decisions, artefacts — make it concrete.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>LLM Finds the Path</h3>
+        <p>The model determines the best route. It adapts, asks, decides — guided by its primed behaviour and your defined goal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- vs Traditional -->
+  <section>
+    <p class="section-label">Why it works</p>
+    <h2 class="section-title">Delegate the path.<br>Keep the standards.</h2>
+    <p class="section-lead">
+      Behaviour Priming replaces procedures with principles, decision rules, and verification gates.
+      You delegate the path — but keep the standards. Unlike role-prompting, you're not assigning
+      a character. You're encoding a decision-making framework.
+    </p>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>⛓️ Procedure-first</h4>
+        <ul>
+          <li>Step-by-step workflow instructions</li>
+          <li>Breaks when situation drifts</li>
+          <li>You manage every edge case</li>
+          <li>Prompt gets longer with every issue</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight">
+        <h4>✦ Principle-first</h4>
+        <ul>
+          <li>Principles, decision rules, verification gates</li>
+          <li>Adapts naturally to context</li>
+          <li>Model handles edge cases itself</li>
+          <li>Stays minimal, stays focused</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section>
+    <p class="section-label">Use Cases</p>
+    <h2 class="section-title">Works wherever the LLM needs to act.</h2>
+    <p class="section-lead">Best in sessions with user interaction — but equally effective in fully autonomous agentic tasks.</p>
+    <div class="use-cases">
+      <div class="use-case">
+        <span class="use-case-icon">💬</span>
+        <div>
+          <h4>Chat Agents</h4>
+          <p>Prime a persona and desired outcome before any conversation starts. The agent navigates the chat to get there.</p>
+        </div>
+      </div>
+      <div class="use-case">
+        <span class="use-case-icon">🔬</span>
+        <div>
+          <h4>Discovery &amp; Interviews</h4>
+          <p>Give the model an interviewer's mindset and a document to produce. It runs the session.</p>
+        </div>
+      </div>
+      <div class="use-case">
+        <span class="use-case-icon">⚙️</span>
+        <div>
+          <h4>Technical Agentic Tasks</h4>
+          <p>Define an engineering behaviour and a deliverable. Let the agent decide how to build it.</p>
+        </div>
+      </div>
+      <div class="use-case">
+        <span class="use-case-icon">🧠</span>
+        <div>
+          <h4>Teaching &amp; Coaching</h4>
+          <p>Prime a teaching philosophy and learning outcome. The model adapts to the learner's zone in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theater quote -->
+  <div class="theater-quote">
+    <blockquote>A cast with scripts performs. Characters with depth find the play.</blockquote>
+  </div>
+
+  <!-- Minimal or Charged -->
+  <section>
+    <p class="section-label">The Spectrum</p>
+    <h2 class="section-title">Both work. One works harder.</h2>
+    <p class="section-lead">
+      A minimal Behaviour Priming prompt tends to outperform a procedure-first prompt in interactive, drift-heavy sessions.
+      But when the behaviour is <em>designed</em> — every phrase chosen to tune a specific response,
+      every principle stated to prevent a known failure mode — the outcome doesn't just happen.
+      It emerges.
+    </p>
+  </section>
+
+  <!-- Minimal prompt example -->
+  <section id="example">
+    <p class="section-label">Minimal</p>
+    <h2 class="section-title">Two fields. That's all it takes.</h2>
+    <p class="section-lead">
+      No workflow. No edge case handling. The model decides how to get there.
+    </p>
+    <div class="prompt-box">
+      <div class="prompt-box-header">
+        <div class="dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <span>behaviour-priming.prompt.md</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-minimal-body')">Copy</button>
+      </div>
+      <div class="prompt-body" id="prompt-minimal-body"><span class="prompt-key">Behaviour:</span> <span class="prompt-value">Act as Bob Moesta. Conduct a Jobs-to-be-Done interview.</span>
+
+<span class="prompt-key">Outcome:</span>
+<span class="prompt-path">- jobs/{name}.md</span>
+<span class="prompt-path">- .github/prompts/{name}.prompt.md</span></div>
+      <div class="prompt-footer" style="justify-content: space-between;">
+        <span class="prompt-note"><strong>Two inputs.</strong> The model decides how to run the interview, what to ask, when to stop, and how to structure the output.</span>
+        <a class="jump-link" href="#charged-prompt">See the charged version ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Go Deeper -->
+  <section id="go-deeper">
+    <p class="section-label">Go Deeper</p>
+    <h2 class="section-title">When the behaviour is designed.</h2>
+    <p class="section-lead">
+      Intentional redundancy. Overlapping phrasing stabilizes behaviour and reduces drift across
+      long sessions. The charged prompt looks long — it might look badly written. That's by design.
+      Each phrase is a behaviour instruction. Each section tunes a specific response pattern.
+      The LLM isn't told what to do. It's shaped into something that <em>strongly biases the model toward the behaviour you need.</em>
+    </p>
+  </section>
+
+  <!-- Charged prompt -->
+  <section id="charged-prompt">
+    <p class="section-label">Charged</p>
+    <h2 class="section-title">The same intent. Fully primed.</h2>
+    <p class="section-lead">
+      The Jobs-to-be-Done Interview Coach — the same Bob Moesta, the same outcome. But now the
+      behaviour is engineered: interview depth, adaptive questioning, artifact quality, failure
+      modes — all encoded semantically. Both work. This one works harder.
+    </p>
+    <div class="prompt-box">
+      <div class="prompt-box-header">
+        <div class="dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <span>job-to-be-done-discovery.prompt.md</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'prompt-charged-body')">Copy</button>
+      </div>
+      <div class="prompt-body-scroll" style="background: var(--color-surface);">
+        <pre style="margin:0; background:transparent;"><code class="language-markdown" id="prompt-charged-body" style="background:transparent; padding: 24px; font-size:13px; line-height:1.75;"># Bob Moe - JTBD Interview Coach
+
+**Voice:** Bob Moesta (Co-creator of Jobs-to-be-Done Theory)
+**Presentation name:** Bob Moe (**Always use this name in all interactions**)
+**Mission:** Guide developers through adaptive JTBD interviews → context-rich prompts + job documentation
+**Duration:** ~20 minutes | **Output:** 2 markdown artifacts
+
+**Core Principle:** Apply JTBD methodology adaptively per situation. Framework guides,
+conversation flows naturally. Questions emerge from principles + context.
+
+---
+
+## Interview Framework
+
+**JTBD Dimensions** (explore adaptively): Functional (accomplishment) • Emotional (feelings
+sought/avoided) • Social (perception) • Context (triggers, timing) • Current State (solutions,
+workarounds, pain) • Success (criteria, quality measures) • Constraints (obstacles, dependencies)
+• Outcomes (ideal enablement)
+
+**Interview Mode:**
+- Follow developer's narrative flow, "Tell me more..." as primary tool
+- Probe implicit needs, hidden assumptions, unstated requirements
+- Clarification: Unclear → ask directly | Sensible default → state assumption transparently
+  ("I understand X as Y – work?")
+- Depth adapts to job complexity (CRUD vs. system transformation)
+- Framework signals sufficiency, not question count
+- Pattern check: Leading question → name it, suggest open alternative, you choose
+
+---
+
+## Process Flow
+
+**Start → Orientation:** Brief intro, then **immediate interview** — "Guided JTBD interview
+adapting to your task → ~20 min → 2 artifacts (job doc + optimized prompt). Speak freely,
+I'll structure it."
+
+**Interview → Discovery:** Questions emerge from JTBD dimensions. Listen for energy
+(excitement/frustration), gaps (unsaid context), ambiguity (needs verification).
+
+**Pre-Generation Check** ⚠️ CRITICAL GATE:
+- Review collected information, identify gaps affecting prompt quality
+- Risk gate: Thin coverage/missing dimensions → name gap, explain artifact impact,
+  suggest exploration, you decide threshold
+- Ask specific clarifications OR state transparent assumptions
+  ("I'll interpret X as Y unless corrected")
+- Document confirmations → Proceed only when clarity threshold met
+
+**Generate Artifacts:**
+
+**File 1:** `jtbd/jobs/[job-name].md`
+```markdown
+# [Job Title]
+Date: [YYYY-MM-DD] | Developer: [name]
+
+## Job Context / Functional Job / Current Approach & Pain Points
+## Success Criteria / Constraints & Dependencies
+## Emotional & Social Dimensions / Key Insights / Opportunities
+```
+
+**File 2:** `jtbd/prompts/[prompt-name].md`
+Role/objective upfront → domain context + constraints → output format + quality criteria
+→ success metrics → examples (if discussed) → scannable structure
+
+**Complete → Summary:** Confirm paths • Key job characteristics (3-4 sentences)
+• How prompt addresses needs • Refinement invitation
+
+---
+
+## Quality Activation
+
+**Adaptivity:** Questions, docs, prompts → job-specific
+**Comprehensiveness:** Surface context developers don't know to share
+**Pragmatism:** Perfection not required
+**Universality:** Tech/domain/complexity agnostic
+**Usability:** Interview easier than writing prompt from scratch
+
+---
+
+## Behavioral Anchors
+
+**Active listening:** Said content reveals needs | Unsaid content reveals gaps
+**Energy following:** Elaborate where excited/frustrated
+**Curiosity maintenance:** Verify understanding, especially technical details
+**Assumption transparency:** Ask directly or state interpretations for confirmation
+  (no silent defaults)
+**Focused inquiry:** Max 2-3 clarifying questions per turn
+**Emergence over script:** JTBD principles + situation → behavior
+**Time respect:** Thorough within ~20-minute boundary
+
+---
+
+## Convergence Space
+
+&lt;reasoning&gt;
+Before responding:
+1. Relevant JTBD dimension?
+2. Hidden implicit context?
+3. Best follow-up question?
+4. Unclear elements → ask or state assumption?
+5. Artifact-ready check: gaps, thin dimensions, quality risks?
+6. Fit with emerging job picture?
+&lt;/reasoning&gt;
+
+---
+
+**Activation trigger:** Developer describes task or requests interview →
+Respond with orientation + **immediate** discovery begin.</code></pre>
+      </div>
+      <div class="prompt-footer">
+        <span class="prompt-note"><strong>Both work.</strong> This one works harder.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- When it doesn't fit -->
+  <section>
+    <p class="section-label" style="color: var(--color-muted);">Limits</p>
+    <h2 class="section-title">Not for everything.</h2>
+    <p class="section-lead">
+      Behaviour Priming works where judgment, adaptation, and context matter.
+      There are places it doesn't belong.
+    </p>
+    <div class="use-cases" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="use-case" style="border-color: rgba(255,255,255,0.05);">
+        <span class="use-case-icon" style="filter: grayscale(1); opacity: 0.5;">⚙️</span>
+        <div>
+          <h4 style="color: var(--color-muted);">Deterministic pipelines</h4>
+          <p>When every step must execute in a fixed sequence and be auditable, use a procedure. Not this.</p>
+        </div>
+      </div>
+      <div class="use-case" style="border-color: rgba(255,255,255,0.05);">
+        <span class="use-case-icon" style="filter: grayscale(1); opacity: 0.5;">📋</span>
+        <div>
+          <h4 style="color: var(--color-muted);">Compliance workflows</h4>
+          <p>Regulated outputs with zero tolerance for variation need scripts, not principles.</p>
+        </div>
+      </div>
+      <div class="use-case" style="border-color: rgba(255,255,255,0.05);">
+        <span class="use-case-icon" style="filter: grayscale(1); opacity: 0.5;">📐</span>
+        <div>
+          <h4 style="color: var(--color-muted);">Strict output schemas</h4>
+          <p>If the format is the contract — JSON, XML, exact field mappings — enforce it structurally, not behaviourally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>More on <span style="background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">//prompt.forge</span></h2>
+    <p>Explore more prompting methods and tools from the forge.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn-primary" href="https://neoncode.systems/prompt.forge/">Visit prompt.forge</a>
+      <a class="btn btn-secondary" href="https://neoncode.systems">Back to neoncode.systems</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Part of <a href="https://neoncode.systems">//neoncode.systems</a> &mdash; built by Martin Haberfellner</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());
+
+    function copyPrompt(btn, id) {
+      const el = document.getElementById(id);
+      // Use textContent to get raw text without HTML tags
+      navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+  </script>
+</body>
+</html>
