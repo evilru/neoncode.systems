@@ -38,3 +38,7 @@ AI can make you lazy. Copy-paste solutions without understanding. This prompt ap
 
 **Want a custom prompt?** Submit your use case via **[//prompt.forge](/prompt.forge/)** — I'll build one using Behaviour Priming.
 
+## Related
+
+Thinking about what experiments like these point toward — autonomous development, the data loop, what comes after the SDLC: **[/thinking](/thinking/)**
+
