@@ -73,19 +73,12 @@ export default defineConfig({
     },
     nav: [
       { text: '//behaviour.priming', link: '/behaviour.priming/index.md' },
+      { text: '//thinking', link: '/thinking/index.md' },
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
-      // {
-      //   text: 'Legal',
-      //   items: [
-      //     { text: 'Imprint', link: '/imprint.md' },
-      //     { text: 'Privacy', link: '/privacy.md' },
-      //     { text: 'License', link: '/LICENSE.md' }
-      //   ]
-      // }
     ],
     footer: {
-      message: '<a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>',
+      message: '<a href="/martin-haberfellner">About</a> | <a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>',
       copyright: '&copy; 2026 Martin Haberfellner · All Rights Reserved'
     },
     sidebar: {

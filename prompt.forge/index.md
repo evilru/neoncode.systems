@@ -10,7 +10,7 @@ hero:
       text: Join the Experiment
       link: https://github.com/evilru/prompt.forge
     - theme: alt
-      text: See the Method
+      text: Behaviour Priming
       link: /behaviour.priming/
 ---
 

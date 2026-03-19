@@ -9,9 +9,6 @@ hero:
     - theme: brand
       text: Browse Experiments
       link: "#experiments"
-    - theme: alt
-      text: Start with the Job To Be Done Prompt
-      link: /proto.labs/job-to-be-done
 ---
 
 ## Current Experiments {#experiments}
@@ -40,5 +37,5 @@ AI can make you lazy. Copy-paste solutions without understanding. This prompt ap
 
 ## Related
 
-Thinking about what experiments like these point toward — autonomous development, the data loop, what comes after the SDLC: **[/thinking](/thinking/)**
+Where the experiments lead — short thoughts, observations, things worth writing down before they disappear: **[//thinking](/thinking/)**
 

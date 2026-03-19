@@ -7,17 +7,14 @@ hero:
   tagline: Fix the processes, not the symptoms. 25 years. Now with AI.
   actions:
     - theme: brand
-      text: The Method
+      text: Behaviour Priming
       link: /behaviour.priming/
     - theme: alt
-      text: The Experiments
+      text: See the Experiments
       link: /proto.labs/
     - theme: alt
       text: Who
       link: /martin-haberfellner
-    - theme: alt
-      text: Thinking
-      link: /thinking/
 ---
 
 <div class="manifest">
