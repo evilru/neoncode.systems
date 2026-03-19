@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Martin Haberfellner"
   text: "LLMs don't follow instructions. They resonate with fields."
-  tagline: Everything built here starts from one question nobody was asking.
+  tagline: Fix the processes, not the symptoms. 25 years. Now with AI.
   actions:
     - theme: brand
       text: The Method
@@ -12,6 +12,12 @@ hero:
     - theme: alt
       text: The Experiments
       link: /proto.labs/
+    - theme: alt
+      text: Who
+      link: /martin-haberfellner
+    - theme: alt
+      text: Thinking
+      link: /thinking/
 ---
 
 <div class="manifest">
