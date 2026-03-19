@@ -179,3 +179,11 @@ Both work. This one works harder.
 <h2>Try it yourself on <a href="/prompt.forge/">//prompt.forge</a></h2>
 <p>Submit a real use case. Get a prompt built with Behaviour Priming.</p>
 </section>
+
+<section class="nc-section nc-section-border-top">
+<p class="section-index">Context</p>
+<h2>Why this method exists.</h2>
+<p>Behaviour Priming didn't start as a framework. It started as a question: if an LLM doesn't truly understand intent, why does it follow instructions at all — and why does it sometimes fail? The method is the answer to that question, developed in practice.</p>
+<p>The same thinking that led here — fix the process, not the symptom; structure before speed; the system behind the system — runs through everything built on this site. <a href="/martin-haberfellner">More about that.</a></p>
+<p>See how this thinking extends beyond prompting, into AI-native development and what comes after the SDLC: <a href="/thinking/">/thinking</a>.</p>
+</section>
