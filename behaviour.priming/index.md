@@ -1,19 +1,19 @@
 ---
-layout: page
+layout: home
 title: //behaviour.priming
----
 
-<section class="nc-hero">
-<p class="section-label">Prompting Method</p>
-<h1>//behaviour.priming</h1>
-<p class="nc-hero-tagline">Let the LLM <em>do the thinking.</em></p>
-<p class="nc-hero-desc">Stop writing workflows. Define how your AI should behave and what outcome you need — then let it find the best path on its own.</p>
-<p class="nc-hero-desc">The <a href="/">origin and thesis</a> behind this method is on the homepage — how semantic fields work and why they matter. This page is about how to use it.</p>
-<nav class="nc-actions">
-<a href="#minimal-prompt" class="nc-btn">See the Minimal Prompt</a>
-<a href="#charged-prompt" class="nc-btn nc-btn-alt">See the Charged Prompt</a>
-</nav>
-</section>
+hero:
+  name: "//behaviour:priming"
+  text: "Let the LLM <em>do the thinking</em>."
+  tagline: "Stop writing workflows. Define how your AI should behave and what outcome you need — then let it find the best path on its own."
+  actions:
+    - theme: alt
+      text:  See the Minimal Prompt
+      link: "#minimal-prompt"
+    - theme: brand
+      text: See the Charged Prompt
+      link: "#charged-prompt"
+---
 
 <section class="nc-section nc-section-border-top">
 <p class="section-index">01 — Method</p>
