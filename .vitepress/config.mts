@@ -51,7 +51,8 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    siteTitle: 'NC!',
+    // siteTitle: 'NC!',
+    siteTitle: 'NEONCODE!',
     externalLinkIcon: true,
     search: {
       provider: 'local'
@@ -67,6 +68,7 @@ export default defineConfig({
       label: 'On this page'
     },
     nav: [
+      { text: '//behaviour.priming', link: '/behaviour.priming/index.md' },
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
       // {
@@ -105,8 +107,8 @@ export default defineConfig({
       '/proto.labs/': [
         {
           text: '//proto.labs',
+          link: '/proto.labs/index.md',
           items: [
-            { text: 'Overview', link: '/proto.labs/index.md' },
             ...getSidebarItems('proto.labs', '/proto.labs/')
           ]
         }
@@ -115,7 +117,6 @@ export default defineConfig({
         {
           text: '//prompt.forge',
           items: [
-            { text: 'Overview', link: '/prompt.forge/index.md' },
             ...getSidebarItems('prompt.forge', '/prompt.forge/')
           ]
         }

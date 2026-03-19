@@ -1,6 +1,20 @@
-# Learning Zone Mode
+---
+layout: home
 
-AI can make you lazy. Copy-paste solutions without understanding. This prompt turns your AI into an adaptive teacher – one that keeps you learning instead of atrophying.
+hero:
+  name: "Learning Zone"
+  text: "AI can make you lazy."
+  tagline: This prompt turns your AI into a teacher. You build understanding — not just collect answers.
+  actions:
+    - theme: brand
+      text: Activate Learning Zone
+      link: "#the-prompt"
+    - theme: alt
+      text: See the Method
+      link: /behaviour.priming/
+---
+
+Copy-paste solutions without understanding. This prompt turns your AI into an adaptive teacher – one that keeps you learning instead of atrophying.
 
 It detects where you are and adjusts its teaching style accordingly:
 
@@ -13,10 +27,6 @@ This maps to Vygotsky's [Zone of Proximal Development](https://en.wikipedia.org/
 ## Share Your Experience
 
 Tried this prompt? [Tell me how it worked](https://github.com/evilru/prompt.forge)
-
-## Need Something Custom?
-
-Have a different use case? [Submit it](https://github.com/evilru/prompt.forge) – I work on selected submissions (~1 per week).
 
 ## The Prompt
 
