@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Learning Zone"
   text: "AI can make you lazy."
-  tagline: This prompt turns your AI into a teacher. You build understanding — not just collect answers.
+  tagline: What if it asked instead of answered?
   actions:
     - theme: brand
       text: Activate Learning Zone
@@ -22,7 +22,7 @@ It detects where you are and adjusts its teaching style accordingly:
 - **Learning Zone** → Guides discovery with frameworks and reasoning
 - **Panic Zone** → Scaffolds down with clear structure and examples
 
-This maps to Vygotsky's [Zone of Proximal Development](https://en.wikipedia.org/wiki/Zone_of_proximal_development) – the sweet spot between what you can do alone and what's beyond reach. Instead of ready-made solutions, you build understanding.
+This maps to Senninger's three-zone model — built on Vygotsky's [Zone of Proximal Development](https://en.wikipedia.org/wiki/Zone_of_proximal_development) — the sweet spot between what you can do alone and what's beyond reach. Instead of ready-made solutions, you build understanding.
 
 ## Share Your Experience
 
