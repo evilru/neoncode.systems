@@ -3,16 +3,15 @@ layout: page
 title: Martin Haberfellner
 ---
 
-<section class="nc-hero">
-<p class="section-label">Organizational Systems Engineer</p>
-<h1>Martin Haberfellner</h1>
-<p class="nc-hero-tagline">I build the system behind the system.</p>
-</section>
+<NcHero>
+  <template #title>Martin Haberfellner</template>
+  <template #tagline>Every problem is a solution.</template>
+</NcHero>
 
 <section class="nc-section nc-section-border-top">
-<p>For 25 years — across platforms, teams, and now AI — the interesting problem was never the feature. It was always what made the feature possible, sustainable, and worth building in the first place.</p>
-<p>Currently at Tietoevry, where AI is everything I do: strategy, adoption, assessment, integration into the SDLC. The work is always the same: find the waste, build the right foundation, let things flow.</p>
-<p>Active in the field. Thinking out loud <a href="/thinking/">here</a>.</p>
+<p>The conversation always goes the same way. Someone explains the problem. I ask what's one level deeper. The answer is always there.</p>
+<p>Across platforms, teams, and now AI — the interesting problem is never the feature. It was always what made the feature possible, sustainable, and worth building in the first place.</p>
+<p>The work is always the same: find the waste, build the right foundation, let things flow.</p>
 </section>
 
 <section class="nc-section nc-section-border-top">
@@ -26,7 +25,7 @@ title: Martin Haberfellner
 
 <div class="nc-step">
 <h3>Lean → DevOps Maturity → AI Maturity. In that order.</h3>
-<p>Buying everyone a better editor has never helped anyone. Giving everyone Copilot doesn't either — until the processes underneath are worth accelerating. AI amplifies what's already there. Chaos and excellence equally.</p>
+<p>Buying everyone the world's best editor has never helped anyone. Giving everyone Copilot doesn't either — until the processes underneath are worth accelerating. AI amplifies what's already there. Chaos and excellence equally.</p>
 </div>
 
 <div class="nc-step">
@@ -52,9 +51,6 @@ title: Martin Haberfellner
 </section>
 
 <section class="nc-section nc-section-border-top">
-<p class="section-index">Currently</p>
-<h2>AI strategy and adoption in enterprise software development.</h2>
-<p>Specifically: how to integrate AI into the SDLC in a way that isn't just faster — but structurally different. What does a development process look like when autonomous agents handle execution? What's the loop that remains?</p>
-<p>Building <a href="/behaviour.priming/">Behaviour Priming</a> — a method for giving LLMs a disposition instead of a script. Testing it in the open via <a href="/proto.labs/">proto.labs</a>.</p>
-<p>Thinking out loud in <a href="/thinking/">/thinking</a>.</p>
+<p class="section-index">By the way.</p>
+<p>If you ever need a votable Quake 3 server or a working stats tool — <a href="https://strikenet.com">strikenet.com</a> has been running since 1999. I bought the domain from my first employer when I left. The server still runs. The <a href="https://github.com/evilru/quake3-vsp-stats">stats tool</a> is dockerized and occasionally gets a fix. Some things are worth keeping alive.</p>
 </section>
