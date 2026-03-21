@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Martin Haberfellner"
-  text: "LLMs don't follow instructions. They resonate with fields."
-  tagline: Fix the processes, not the symptoms. 25 years. Now with AI.
+  text: "LLMs don't follow instructions. <em>They resonate with fields</em>."
+  tagline: The field is always there. The question is whether you designed it.
   actions:
     - theme: brand
       text: Behaviour Priming
@@ -33,7 +33,7 @@ hero:
 <section class="nc-section">
 <p class="section-index">02 — The Discovery</p>
 <h2>Every prompt creates a field. The question is whether you <em>designed it.</em></h2>
-<p>The model doesn't read a prompt and execute it. It enters a semantic space. That space shapes every response that follows. User input doesn't drive the model. It creates <strong>interference in the field.</strong> The model responds to the interference from within the field.</p>
+<p>The model doesn't read a prompt and execute it. It enters a semantic space — not metaphorically, but mechanically: a field of activation patterns, tensions, and forces, the way a physical field shapes what moves through it. That space shapes every response that follows. User input doesn't drive the model. It creates <strong>interference in the field.</strong> The model responds to the interference from within the field.</p>
 <p>This is not a choice between instructions and fields. <strong>Fields always emerge.</strong> An instruction-based prompt creates one too — accidental, noisy, unstable. The instructions are just the debris the field is built from. It often works. But it drifts. It breaks under unexpected input. It costs more than it should.</p>
 <div class="nc-compare">
 <div class="nc-compare-card">
@@ -68,11 +68,11 @@ hero:
 
 <section class="nc-section">
 <p class="section-index">04 — Consequences</p>
-<h2>Why the industry <em>still gets this wrong.</em></h2>
-<p>Most prompt engineering is software engineering wearing a different hat. Deterministic thinking applied to a probabilistic system. Define every step. Anticipate every case. Control every output.</p>
+<h2>Most prompt engineering is software engineering <em>wearing a different hat.</em></h2>
+<p>Deterministic thinking applied to a probabilistic system. Define every step. Anticipate every case. Control every output.</p>
 <p>This suppresses exactly what makes LLMs powerful: emergent understanding, implicit knowledge, contextual judgment. The more you over-specify, the more you undermine the model.</p>
-<p>Multi-agent systems do the same. One LLM prompting another — imitating how a human explains something to a less experienced human. Step by step. Spelled out. As if the other model doesn't already carry the same implicit knowledge. <strong>Two experts talking like one of them is a beginner.</strong></p>
-<p>The pattern is everywhere. AI in human workflows. AI in development pipelines. The host thinks. The subagent executes. Nobody asks why the subagent isn't trusted to think.</p>
+<p>Multi-agent systems follow the same pattern. One LLM prompting another — imitating how a human explains something to a less experienced human. Step by step. Spelled out. As if the other model doesn't already carry the same implicit knowledge. <strong>Two experts talking like one of them is a beginner.</strong></p>
+<p>The pattern is everywhere. AI in human workflows. AI in development pipelines. The host thinks. The subagent executes. The question worth asking: why isn't the subagent trusted to think?</p>
 <div class="nc-quote">
 <p>"Frame. Goal. Trust. The model finds the path. That's not vague — that's accurate."</p>
 </div>
@@ -115,8 +115,9 @@ hero:
 </section>
 
 <section class="nc-final">
-<h2>The question nobody was asking <em>was the only one that mattered.</em></h2>
+<h2>Once you see the field, <em>you can't unsee it.</em></h2>
 <p>This is not a framework. It's not a methodology to adopt. It's a shift in how you see the thing. Once you see it, the prompts write themselves differently. The results hold differently. The drift disappears.</p>
+<p><a href="/behaviour.priming/">See for yourself</a></p>
 </section>
 
 </div>
