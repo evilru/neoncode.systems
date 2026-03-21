@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "//prompt.forge"
-  text: "Your job. My method. Better prompt."
-  tagline: Submit a real use case – I'll show you what Behaviour Priming can do.
+  text: "Send me your prompt. <em>I'll rebuild it.</em>"
+  tagline: I want to know if Behaviour Priming works for you the way it works for me. You test both. You decide.
   actions:
     - theme: brand
       text: Join the Experiment
@@ -22,7 +22,7 @@ hero:
 
 1. Use the **[Job-to-be-Done interview prompt](/proto.labs/job-to-be-done)** to document what you're trying to accomplish
 2. The interview generates a baseline prompt tailored to your job
-3. Submit your job via GitHub — I'll create an improved version using Behaviour Priming
+3. Submit your job via GitHub — I'll run the compiler: your intent goes in, a semantically charged prompt comes out
 4. Test both, share what works better
 
 **→ [Join the Experiment on GitHub](https://github.com/evilru/prompt.forge)**
