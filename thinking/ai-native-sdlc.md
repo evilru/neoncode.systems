@@ -3,10 +3,10 @@ layout: page
 title: What's left when development is autonomous.
 ---
 
-<section class="nc-hero">
-<p class="section-label">thinking / 2026-03-19</p>
-<h1>What's left when development is autonomous.</h1>
-</section>
+<NcHero>
+  <template #label>thinking / 2026-03-19</template>
+  <template #title>What's left when development is autonomous.</template>
+</NcHero>
 
 <section class="nc-section nc-section-border-top">
 <p>Assume the agent handles implementation. Another agent handles operations — Terraform, Kubernetes, configuration, deployment. Both are nearly there today. In 1–2 years, close enough.</p>
@@ -59,7 +59,7 @@ title: What's left when development is autonomous.
 <p>An agent doesn't need a ticket system. It needs a signal. It doesn't need a sprint. It needs a priority function. It doesn't need a PR. It needs a verification gate.</p>
 
 <div class="nc-quote">
-<p>"Fix your fucking processes. Then automate them."</p>
+<p>"Fix your processes. Then automate them."</p>
 </div>
 
 <p>The sequence matters. AI on top of broken processes doesn't produce better software faster. It produces broken software faster.</p>

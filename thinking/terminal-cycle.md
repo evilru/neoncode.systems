@@ -3,10 +3,10 @@ layout: page
 title: The terminal never left.
 ---
 
-<section class="nc-hero">
-<p class="section-label">thinking / 2026-03-19</p>
-<h1>The terminal never left.</h1>
-</section>
+<NcHero>
+  <template #label>thinking / 2026-03-19</template>
+  <template #title>The terminal never left.</template>
+</NcHero>
 
 <section class="nc-section nc-section-border-top">
 <p>We spent 40 years building abstractions on top of the command line.</p>
