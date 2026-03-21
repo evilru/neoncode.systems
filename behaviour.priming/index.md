@@ -5,7 +5,7 @@ title: //behaviour.priming
 hero:
   name: "//behaviour:priming"
   text: "Let the LLM <em>do the thinking</em>."
-  tagline: "Stop writing workflows. Define how your AI should behave and what outcome you need — then let it find the best path on its own."
+  tagline: "Prime the behaviour. Let go."
   actions:
     - theme: alt
       text:  See the Minimal Prompt
@@ -17,7 +17,7 @@ hero:
 
 <section class="nc-section nc-section-border-top">
 <p class="section-index">01 — Method</p>
-<h2>Prime the behaviour. Define the outcome. <em>Let go.</em></h2>
+<h2>Set the stage. <em>The model finds the play.</em></h2>
 <p>Instead of scripting every step, you set the stage. Two inputs. One autonomous agent.</p>
 <div class="nc-steps">
 <div class="nc-step">
@@ -39,7 +39,7 @@ hero:
 </section>
 
 <section class="nc-section nc-section-border-top">
-<p class="section-index">02 — Why it works</p>
+<p class="section-index">02 — Principle, not procedure</p>
 <h2>Delegate the path. <em>Keep the standards.</em></h2>
 <p>Behaviour Priming replaces procedures with principles, decision rules, and verification gates. You delegate the path — but keep the standards. Unlike role-prompting, you're not assigning a character. You're encoding a decision-making framework.</p>
 <div class="nc-compare nc-compare-spaced">
@@ -100,7 +100,7 @@ hero:
 </div>
 </section>
 
-<div class="nc-quote nc-quote-center">
+<div class="nc-quote">
 <blockquote>A cast with scripts performs. Characters with depth find the play.</blockquote>
 </div>
 
@@ -118,7 +118,7 @@ hero:
 <div class="nc-prompt-header">
 <span>behaviour-priming.prompt.md</span>
 </div>
-<div class="nc-prompt-body"><strong>Behaviour:</strong> Act as Bob Moesta. Conduct a Jobs-to-be-Done interview.<br><br><strong>Outcome:</strong><br><span class="nc-prompt-path">- jobs/{name}.md</span><br><span class="nc-prompt-path">- .github/prompts/{name}.prompt.md</span></div>
+<div class="nc-prompt-body"><strong>Behaviour:</strong> Act as Bob Moesta. Conduct a Jobs-to-be-Done interview.<br><br><strong>Outcome:</strong><br><span class="nc-prompt-path">- jobs/{name}.md</span><span class="nc-prompt-path">- .github/prompts/{name}.prompt.md</span></div>
 <div class="nc-prompt-footer">
 <p><strong>Two inputs.</strong> The model decides how to run the interview, what to ask, when to stop, and how to structure the output.</p>
 </div>
@@ -128,7 +128,7 @@ hero:
 <section class="nc-section nc-section-border-top">
 <p class="section-index">06 — Go Deeper</p>
 <h2>When the behaviour <em>is designed.</em></h2>
-<p>Intentional redundancy. Overlapping phrasing stabilizes behaviour and reduces drift across long sessions. The charged prompt looks long — it might look badly written. That's by design. Each phrase is a behaviour instruction. Each section tunes a specific response pattern. The LLM isn't told what to do. It's shaped into something that <strong>strongly biases the model toward the behaviour you need.</strong></p>
+<p>A charged prompt isn't written phrase by phrase — it's compiled from intent. Intentional redundancy. Overlapping phrasing stabilizes behaviour and reduces drift across long sessions. The charged prompt looks long — it might look badly written. That's by design. Each phrase is a behaviour instruction. Each section tunes a specific response pattern. The LLM isn't told what to do. It's shaped into something that <strong>strongly biases the model toward the behaviour you need.</strong></p>
 </section>
 
 <section class="nc-section nc-section-border-top" id="charged-prompt">
@@ -175,15 +175,8 @@ Both work. This one works harder.
 </div>
 </section>
 
-<section class="nc-cta">
+<section class="nc-final">
 <h2>Try it yourself on <a href="/prompt.forge/">//prompt.forge</a></h2>
 <p>Submit a real use case. Get a prompt built with Behaviour Priming.</p>
 </section>
 
-<section class="nc-section nc-section-border-top">
-<p class="section-index">Context</p>
-<h2>Why this method exists.</h2>
-<p>Behaviour Priming didn't start as a framework. It started as a question: if an LLM doesn't truly understand intent, why does it follow instructions at all — and why does it sometimes fail? The method is the answer to that question, developed in practice.</p>
-<p>The same thinking that led here — fix the process, not the symptom; structure before speed; the system behind the system — runs through everything built on this site. <a href="/martin-haberfellner">More about that.</a></p>
-<p>See how this thinking extends beyond prompting, into AI-native development and what comes after the SDLC: <a href="/thinking/">/thinking</a>.</p>
-</section>
