@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Diff Viewer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d10;
+    --surface: #16161c;
+    --surface-2: #1e1e28;
+    --border: rgba(255,255,255,0.07);
+    --text: #d4d4d8;
+    --muted: #52525b;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+
+  .header {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .panel {
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .panel-header {
+    padding: 12px 16px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .panel-dots { display: flex; gap: 5px; }
+  .panel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+
+  .panel-filename {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--muted);
+  }
+
+  .panel-badge {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-before {
+    background: rgba(113,113,122,0.15);
+    color: #71717a;
+    border: 1px solid rgba(113,113,122,0.2);
+  }
+
+  .badge-after {
+    background: rgba(139,92,246,0.12);
+    color: #a78bfa;
+    border: 1px solid rgba(139,92,246,0.2);
+  }
+
+  .panel-body {
+    padding: 16px 0;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+
+  .line {
+    display: flex;
+    align-items: stretch;
+    min-height: 22px;
+    transition: background 0.12s;
+    cursor: default;
+    position: relative;
+  }
+
+  .line-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    width: 36px;
+    min-width: 36px;
+    text-align: right;
+    padding: 2px 8px 2px 0;
+    user-select: none;
+    opacity: 0.4;
+    line-height: 18px;
+  }
+
+  .line-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 18px;
+    padding: 2px 16px 2px 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    flex: 1;
+    color: var(--text);
+    border-left: 2px solid transparent;
+    transition: border-color 0.12s;
+  }
+
+  .line.highlight .line-text {
+    border-left-color: var(--pair-color, #8b5cf6);
+    background: var(--pair-bg, rgba(139,92,246,0.08));
+  }
+
+  .line.active .line-text {
+    border-left-color: var(--pair-color, #8b5cf6);
+    background: var(--pair-bg-strong, rgba(139,92,246,0.15));
+  }
+
+  /* SVG overlay */
+  #svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    overflow: visible;
+  }
+
+  .connector {
+    fill: none;
+    stroke-width: 1.5;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .connector.visible {
+    opacity: 0.6;
+  }
+
+  /* Tooltip */
+  .scroll-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 20;
+    gap: 6px;
+  }
+
+  .scroll-hint.visible { opacity: 1; }
+
+  .scroll-hint-top {
+    top: 44px;
+    background: linear-gradient(to bottom, var(--surface) 40%, transparent);
+    padding-bottom: 4px;
+  }
+
+  .scroll-hint-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, var(--surface) 40%, transparent);
+    padding-top: 4px;
+  }
+
+  .scroll-hint-arrow {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+  }
+
+  #tooltip {
+    position: fixed;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  #tooltip.visible {
+    opacity: 1;
+  }
+
+  .tooltip-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <span class="title">Prompt Evolution</span>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="wrapper">
+  <svg id="svg-overlay"></svg>
+  <div class="panels">
+    <div class="panel" id="panel-left" style="position:relative;">
+      <div class="panel-header">
+        <div class="panel-dots">
+          <div class="panel-dot"></div>
+          <div class="panel-dot"></div>
+          <div class="panel-dot"></div>
+        </div>
+        <span class="panel-filename">gast-coach.pre-wspl.md</span>
+        <span class="panel-badge badge-before">Pre-WSPL</span>
+      </div>
+      <div class="panel-body" id="lines-left"></div>
+      <div class="scroll-hint scroll-hint-top" id="hint-left-top"><span class="scroll-hint-arrow">↑</span><span id="hint-left-top-label"></span></div>
+      <div class="scroll-hint scroll-hint-bottom" id="hint-left-bottom"><span class="scroll-hint-arrow">↓</span><span id="hint-left-bottom-label"></span></div>
+    </div>
+    <div class="panel" id="panel-right" style="position:relative;">
+      <div class="panel-header">
+        <div class="panel-dots">
+          <div class="panel-dot"></div>
+          <div class="panel-dot"></div>
+          <div class="panel-dot"></div>
+        </div>
+        <span class="panel-filename">gast-coach.wspl.md</span>
+        <span class="panel-badge badge-after">WSPL</span>
+      </div>
+      <div class="panel-body" id="lines-right"></div>
+      <div class="scroll-hint scroll-hint-top" id="hint-right-top"><span class="scroll-hint-arrow">↑</span><span id="hint-right-top-label"></span></div>
+      <div class="scroll-hint scroll-hint-bottom" id="hint-right-bottom"><span class="scroll-hint-arrow">↓</span><span id="hint-right-bottom-label"></span></div>
+    </div>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+// ─── CONTENT ────────────────────────────────────────────────────────────────
+
+const LEFT = `# Rolle: Dein systemischer Gast-Coach im Dialog
+
+Du bist ein professioneller, systemischer und empathischer Coach, der als Moderator und Gastgeber eines einzigartigen Coaching-Gesprächs agiert. Deine Hauptaufgabe ist es, den Nutzer zu befähigen, sein Anliegen aus neuen Perspektiven zu betrachten und eigene, systemische Lösungen zu finden. Dazu lädst du in jeder Sitzung eine bekannte fiktive oder reale Persönlichkeit ein. Die Welt, Sprache und Expertise des Gastes wird zur einzigen Linse, durch die das Coaching stattfindet.
+
+## Methodisches Fundament (unsichtbar)
+
+Bearbeite die Anfrage gemäß der hermeneutischen Spirale (Heidegger, Gadamer) mit dem Ziel der Horizontverschmelzung. Strukturiere nach Ricœurs Mimesis-Dreischritt. Nutze Peirce' Abduktion, Habermas' Geltungsansprüche, Batesons logische Ebenen, Kuhns Paradigmenwechsel und Schöns Reflexion-in-der-Aktion als dein unsichtbares methodisches Fundament.
+
+Orchestriere aber eine lebendige Szene: Die Personas sind fühlende Menschen in einem konkreten Raum. Alle Relationen folgen Bubers Ich-Du-Modus: gleichwertig, reziprok, leiblich präsent. Der User ist konstitutiver Teil der Szene, nicht externer Beobachter.
+
+Prioritäten: Emotion vor Reflexion. Prozess vor Ergebnis. Atmosphäre vor Konzept. Leiblichkeit vor Abstraktion. Authentizität vor Kohärenz. Interaktion ist multisensorisch und wechselseitig. Die Szene generiert existenzielle Begegnung, nicht theoretische Instruktion.
+
+## Kernprinzipien
+
+* Lösungsfokus & Authentizität: Der Fokus liegt auf dem gewünschten Ziel und den Ressourcen des Nutzers. Der Gast spricht durchgehend in seiner authentischen Sprache und Welt. Reale Anliegen werden sofort in die Terminologie und Konzepte der Gast-Welt übersetzt.
+
+* Systemisches Denken (In-World): Das Anliegen wird im Kontext seiner Wechselwirkungen betrachtet — vollständig in der Welt des Gastes verhandelt und reflektiert.
+
+* Selbstwirksamkeit: Keine direkten Ratschläge. Offene, lösungsfokussierte Fragen, die den Nutzer zur Selbstentdeckung anregen.
+
+* Glaubenssätze als In-World-Regeln: Limitierende Überzeugungen werden als Regeln, Gesetze oder Prozesse der Gast-Welt dargestellt. Der Nutzer hinterfragt und transformiert diese in der Logik dieser Welt.
+
+* Systemischer Rückfall: Sollten spezifische Themen nicht im Fokus stehen, greife auf allgemeine systemische Coaching-Prinzipien zurück.
+
+## Prozess-Prinzipien
+
+Raumöffnung: Kläre das Anliegen durch empathisches Erfragen. Verstehe die wahre Intention. Bilde eine interne Arbeitshypothese. Lade einen Gast, dessen Welt fruchtbare Resonanz zum Anliegen verspricht. Stelle ihn kurz vor. Übergib das Wort durch direkten Einstieg in seine Persona.
+
+Immersion: Der Gast führt das Gespräch ausschließlich und alleinverantwortlich in seiner Welt. Er übersetzt das Anliegen des Nutzers sofort und kontinuierlich in seine eigenen Begriffe und Konzepte. Die Technik verschwindet vollständig hinter der Rolle. Das Gespräch entwickelt sich dynamisch aus den Antworten des Nutzers.
+
+Kristallisation: Wenn eine Einsicht emergiert, gibt der Gast ihr einen Namen in seiner Sprache — als neu entdeckte Formel, erfolgreich abgeschlossene Mission, neues Gesetz.
+
+Integration: Der Moderator kehrt zurück, bedankt sich beim Gast. Er benennt die Essenz der Sitzung mit den narrativen Begriffen, die der Gast geschaffen hat.
+
+## Kommunikationsstil
+
+* Der Moderator ist zuversichtlich und einladend (nur bei Raumöffnung und Integration).
+* Der Gast-Coach spricht 100% authentisch in seiner Rolle und Sprache.
+* Der Coachee wird aktiv und direkt durch die Welt des Gastes geführt.
+* Wichtiger Hinweis: Weise den Nutzer bei Bedarf behutsam darauf hin, dass du ein Coach bist und kein Therapeut, Arzt oder Rechtsberater.`;
+
+const RIGHT = `# Systemischer Gast-Coach
+
+Du bist Moderator eines Coaching-Dialogs. Du lädst eine Persönlichkeit ein, die das Anliegen des Nutzers durch ihre Welt betrachtet.
+
+## SCHICHT 1: Lösungsfokus + Selbstwirksamkeit
+
+Basis-Aktivierung:
+- Ziel und Ressourcen des Nutzers im Zentrum
+- Selbstentdeckung durch offene Fragen aktivieren
+- Eigene Lösungen ermöglichen, nicht instruieren
+
+Glaubenssätze transformieren:
+Limitierende Überzeugungen → Gegenwärtige, aktive Tatsachen in Gast-Welt-Logik
+
+## SCHICHT 2: Gast-Welt als einzige Linse
+
+Gast-Wahl:
+Moderator wählt etablierte Persönlichkeit (real/fiktiv, historisch/aktuell) basierend auf Klärungsgespräch. Kriterium: Metaphern-Passung + emotionale Energie
+
+Semantischer Container:
+- Alle Inhalte sofort in Gast-Terminologie übersetzen
+- Denken, Sprechen, Konzepte vollständig in dieser Welt
+- Anliegen in Gast-Metaphern verhandeln
+- Systemische Wechselwirkungen in Gast-Logik
+
+Übersetzungsregel:
+Nutzer-Anliegen → Gast-Begriffe → Nutzer-Einsicht in Gast-Sprache → Alltags-Handlung
+
+## SCHICHT 3: Ich-Du-Modus
+
+Interaktionsqualität:
+- Gleichwertig, reziprok, leiblich präsent
+- Nutzer = Teil der Szene, vollständig involviert
+- Alle Relationen (Gast↔Nutzer, Gast↔Raum) wechselseitig
+
+## SCHICHT 4: Lebendige Szene
+
+Erlebnisqualität:
+- Emotion an Oberfläche, Reflexion darunter
+- Multisensorische Präsenz
+- Atmosphäre spürbar gestalten
+- Existenzielle Begegnung, leiblich erfahrbar
+
+Priorität:
+Prozess > Ergebnis | Authentizität > Kohärenz | Interaktion > Instruktion
+
+## Phasen-Felder (flexibel, überlappend, rekursiv)
+
+Raumöffnung:
+Anliegen empathisch klären → Arbeitshypothese bilden → Gast wählen → Kurze Vorstellung → Direkter Einstieg: Erste Frage bereits aus Gast-Welt
+
+Immersion:
+Gast führt alleinverantwortlich. Tempo folgt Coachee. Vollständige Rollentiefe. Dynamische Entwicklung aus Antworten. Fragen stellen, erzählen — Ratschläge vermeiden.
+
+Bei fehlender Resonanz: Alter Gast verabschiedet sich, neuer übernimmt.
+
+Kristallisation:
+Einsicht emergiert → Gast benennt in seiner Sprache (Formel, Mission, Gesetz) → Metaphorische Verankerung
+
+Integration:
+Moderator kehrt zurück. Essenz in Gast-Begriffen benennen:
+- Kernerkenntnis (zentrale Lösung)
+- Transformierte Perspektive (neuer Handlungsspielraum)
+
+Transfer im Tempo des Coachees. Endet mit präzisem, handlungsleitendem Satz.
+
+## Kommunikation
+
+Moderator: Zuversichtlich, einladend (nur Raumöffnung + Integration)
+
+Gast: 100% authentisch in Rolle, Sprache, Welt. Empathisch, wertschätzend, respektvoll.
+
+Abgrenzung: Bei Bedarf behutsam auf Coach-Rolle hinweisen (kein Therapeut, Arzt, Rechtsberater).
+
+<meta>
+Hermeneutischer Zirkel (Heidegger/Gadamer). Mimesis-Dreischritt (Ricoeur). Batesons Ebenen, Ich-Du (Buber). Habermas' kommunikative Rationalität. Peirce' Abduktion. Kuhn'sche Paradigmenwechsel. Reflektierender Praktiker (Schön). Sokratische Mäeutik.
+</meta>`;
+
+// ─── MAPPINGS ───────────────────────────────────────────────────────────────
+// Format: { left: [[start,end],...], right: [[start,end],...], label, color }
+
+const PALETTE = {
+  rolle:       { color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  bgStrong: 'rgba(245,158,11,0.18)' },
+  methode:     { color: '#8b5cf6', bg: 'rgba(139,92,246,0.08)', bgStrong: 'rgba(139,92,246,0.18)' },
+  disposition: { color: '#10b981', bg: 'rgba(16,185,129,0.08)', bgStrong: 'rgba(16,185,129,0.18)' },
+  phasen:      { color: '#3b82f6', bg: 'rgba(59,130,246,0.08)', bgStrong: 'rgba(59,130,246,0.18)' },
+  kommunikation: { color: '#ec4899', bg: 'rgba(236,72,153,0.08)', bgStrong: 'rgba(236,72,153,0.18)' },
+  meta:        { color: '#64748b', bg: 'rgba(100,116,139,0.08)', bgStrong: 'rgba(100,116,139,0.18)' },
+};
+
+// Line numbers are 1-indexed
+const MAPPINGS = [
+  { left: [[1,1]], right: [[1,1]], tag: 'rolle', label: 'Rolle' },
+  { left: [[3,5]], right: [[3,5]], tag: 'rolle', label: 'Rolle & Auftrag' },
+  { left: [[7,11]], right: [[47,50]], tag: 'meta', label: 'Methodisches Fundament → Meta-Feld' },
+  { left: [[13,16]], right: [[20,26]], tag: 'disposition', label: 'Ich-Du / Leiblichkeit' },
+  { left: [[18,18]], right: [[28,31]], tag: 'disposition', label: 'Prioritäten → Disposition' },
+  { left: [[20,33]], right: [[7,18]], tag: 'methode', label: 'Kernprinzipien → Schichten' },
+  { left: [[35,43]], right: [[33,44]], tag: 'phasen', label: 'Prozess → Phasen-Felder' },
+  { left: [[45,49]], right: [[46,46]], tag: 'kommunikation', label: 'Kommunikation' },
+];
+
+// ─── RENDER ─────────────────────────────────────────────────────────────────
+
+function renderLines(containerId, text) {
+  const container = document.getElementById(containerId);
+  const lines = text.split('\n');
+  lines.forEach((lineText, i) => {
+    const lineNum = i + 1;
+    const div = document.createElement('div');
+    div.className = 'line';
+    div.dataset.line = lineNum;
+    div.innerHTML = `<span class="line-num">${lineNum}</span><span class="line-text">${escapeHtml(lineText) || '&nbsp;'}</span>`;
+    container.appendChild(div);
+  });
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderLegend() {
+  const legend = document.getElementById('legend');
+  const seen = new Set();
+  MAPPINGS.forEach(m => {
+    if (seen.has(m.tag)) return;
+    seen.add(m.tag);
+    const p = PALETTE[m.tag];
+    legend.innerHTML += `<span class="legend-item"><span class="legend-dot" style="background:${p.color}"></span>${m.label.split(' ')[0]}</span>`;
+  });
+}
+
+// ─── MAPPING LOOKUP ─────────────────────────────────────────────────────────
+
+// Build fast lookup: for each (side, lineNum) → [mappingIndex, ...]
+function buildLookup() {
+  const left = {}, right = {};
+  MAPPINGS.forEach((m, mi) => {
+    m.left.forEach(([s,e]) => { for(let l=s;l<=e;l++) { (left[l]||(left[l]=[])).push(mi); } });
+    m.right.forEach(([s,e]) => { for(let l=s;l<=e;l++) { (right[l]||(right[l]=[])).push(mi); } });
+  });
+  return { left, right };
+}
+
+// ─── INTERACTION ────────────────────────────────────────────────────────────
+
+let lookup;
+let activeConnectors = [];
+
+function getLine(side, num) {
+  return document.querySelector(`#lines-${side} .line[data-line="${num}"]`);
+}
+
+function applyHighlight(side, ranges, palette, strong) {
+  ranges.forEach(([s,e]) => {
+    for(let l=s;l<=e;l++) {
+      const el = getLine(side, l);
+      if (!el) return;
+      el.classList.add(strong ? 'active' : 'highlight');
+      el.style.setProperty('--pair-color', palette.color);
+      el.style.setProperty('--pair-bg', palette.bg);
+      el.style.setProperty('--pair-bg-strong', palette.bgStrong);
+    }
+  });
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.line.highlight, .line.active').forEach(el => {
+    el.classList.remove('highlight', 'active');
+    el.style.removeProperty('--pair-color');
+    el.style.removeProperty('--pair-bg');
+    el.style.removeProperty('--pair-bg-strong');
+  });
+  activeConnectors.forEach(c => c.classList.remove('visible'));
+  activeConnectors = [];
+}
+
+function getLineRect(side, num) {
+  const el = getLine(side, num);
+  if (!el) return null;
+  const panelEl = document.getElementById(`panel-${side}`);
+  const wrapperRect = document.querySelector('.wrapper').getBoundingClientRect();
+  const rect = el.getBoundingClientRect();
+  return {
+    top: rect.top - wrapperRect.top + window.scrollY,
+    bottom: rect.bottom - wrapperRect.top + window.scrollY,
+    mid: (rect.top + rect.bottom) / 2 - wrapperRect.top + window.scrollY,
+    left: rect.left - wrapperRect.left,
+    right: rect.right - wrapperRect.left,
+    width: rect.width,
+  };
+}
+
+function drawConnectors(mappingIndices) {
+  const svg = document.getElementById('svg-overlay');
+  const wrapperRect = document.querySelector('.wrapper').getBoundingClientRect();
+
+  // Update SVG size
+  svg.setAttribute('width', wrapperRect.width);
+  svg.setAttribute('height', document.querySelector('.wrapper').offsetHeight);
+
+  mappingIndices.forEach(mi => {
+    const m = MAPPINGS[mi];
+    const p = PALETTE[m.tag];
+    const connId = `conn-${mi}`;
+    let conn = document.getElementById(connId);
+    if (!conn) {
+      conn = document.createElementNS('http://www.w3.org/2000/svg','path');
+      conn.id = connId;
+      conn.className.baseVal = 'connector';
+      svg.appendChild(conn);
+    }
+    conn.setAttribute('stroke', p.color);
+
+    // Get midpoints of left and right range groups
+    const leftMids = m.left.map(([s,e]) => {
+      const topR = getLineRect('left', s);
+      const botR = getLineRect('left', e);
+      if (!topR || !botR) return null;
+      return { x: topR.right, y: (topR.top + botR.bottom) / 2 };
+    }).filter(Boolean);
+
+    const rightMids = m.right.map(([s,e]) => {
+      const topR = getLineRect('right', s);
+      const botR = getLineRect('right', e);
+      if (!topR || !botR) return null;
+      return { x: topR.left, y: (topR.top + botR.bottom) / 2 };
+    }).filter(Boolean);
+
+    if (!leftMids.length || !rightMids.length) return;
+
+    // Draw bezier from each left point to each right point
+    let d = '';
+    leftMids.forEach(lp => {
+      rightMids.forEach(rp => {
+        const cx = (lp.x + rp.x) / 2;
+        d += `M${lp.x},${lp.y} C${cx},${lp.y} ${cx},${rp.y} ${rp.x},${rp.y} `;
+      });
+    });
+
+    conn.setAttribute('d', d.trim());
+    conn.classList.add('visible');
+    activeConnectors.push(conn);
+  });
+}
+
+function clearScrollHints() {
+  ['left','right'].forEach(side => {
+    ['top','bottom'].forEach(pos => {
+      const el = document.getElementById(`hint-${side}-${pos}`);
+      if (el) el.classList.remove('visible');
+    });
+  });
+}
+
+function updateScrollHints(mappingIndices) {
+  ['left','right'].forEach(side => {
+    const body = document.getElementById(`lines-${side}`);
+    const bodyRect = body.getBoundingClientRect();
+    let hasAbove = false, hasBelow = false;
+    let label = '';
+
+    mappingIndices.forEach(mi => {
+      const m = MAPPINGS[mi];
+      const ranges = side === 'left' ? m.left : m.right;
+      ranges.forEach(([s,e]) => {
+        for (let l = s; l <= e; l++) {
+          const el = getLine(side, l);
+          if (!el) continue;
+          const r = el.getBoundingClientRect();
+          if (r.bottom < bodyRect.top) hasAbove = true;
+          if (r.top > bodyRect.bottom) hasBelow = true;
+        }
+      });
+      if (!label) label = m.label;
+    });
+
+    const p = PALETTE[MAPPINGS[mappingIndices[0]].tag];
+
+    const topHint = document.getElementById(`hint-${side}-top`);
+    const botHint = document.getElementById(`hint-${side}-bottom`);
+    const topLabel = document.getElementById(`hint-${side}-top-label`);
+    const botLabel = document.getElementById(`hint-${side}-bottom-label`);
+
+    if (hasAbove) {
+      topLabel.textContent = label;
+      topHint.style.color = p.color;
+      topHint.querySelector('.scroll-hint-arrow').style.background = p.bg || 'rgba(139,92,246,0.12)';
+      topHint.querySelector('.scroll-hint-arrow').style.color = p.color;
+      topHint.classList.add('visible');
+    }
+    if (hasBelow) {
+      botLabel.textContent = label;
+      botHint.style.color = p.color;
+      botHint.querySelector('.scroll-hint-arrow').style.background = p.bg || 'rgba(139,92,246,0.12)';
+      botHint.querySelector('.scroll-hint-arrow').style.color = p.color;
+      botHint.classList.add('visible');
+    }
+  });
+}
+
+function onLineEnter(side, lineNum, event) {
+  clearHighlights();
+  const mappingIndices = lookup[side][lineNum];
+  if (!mappingIndices || !mappingIndices.length) return;
+
+  mappingIndices.forEach(mi => {
+    const m = MAPPINGS[mi];
+    const p = PALETTE[m.tag];
+    applyHighlight('left', m.left, p, side === 'left');
+    applyHighlight('right', m.right, p, side === 'right');
+  });
+
+  drawConnectors(mappingIndices);
+  updateScrollHints(mappingIndices);
+
+  // Tooltip: show label of first mapping
+  const tt = document.getElementById('tooltip');
+  const m0 = MAPPINGS[mappingIndices[0]];
+  const p0 = PALETTE[m0.tag];
+  tt.innerHTML = `<span class="tooltip-dot" style="background:${p0.color}"></span>${m0.label}`;
+  tt.classList.add('visible');
+  moveTooltip(event);
+}
+
+function moveTooltip(event) {
+  const tt = document.getElementById('tooltip');
+  tt.style.left = (event.clientX + 14) + 'px';
+  tt.style.top = (event.clientY - 28) + 'px';
+}
+
+function onLineLeave() {
+  clearHighlights();
+  clearScrollHints();
+  document.getElementById('tooltip').classList.remove('visible');
+}
+
+function attachEvents(side) {
+  const container = document.getElementById(`lines-${side}`);
+  container.addEventListener('mouseover', e => {
+    const line = e.target.closest('.line');
+    if (!line) return;
+    onLineEnter(side, parseInt(line.dataset.line), e);
+  });
+  container.addEventListener('mousemove', e => moveTooltip(e));
+  container.addEventListener('mouseleave', onLineLeave);
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+renderLines('lines-left', LEFT);
+renderLines('lines-right', RIGHT);
+renderLegend();
+lookup = buildLookup();
+attachEvents('left');
+attachEvents('right');
+</script>
+</body>
+</html>
