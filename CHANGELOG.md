@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.2] - 2026-03-22
+
+### 🐛 Bug Fixes
+
+- *(theme)* 💬 fix CSS unicode escapes in list item content
 ## [0.4.1] - 2026-03-22
 
 ### 🚀 Features
