@@ -146,6 +146,7 @@ Both work. This one works harder.
 
 </section>
 
+<!-- 
 <section class="nc-section nc-section-border-top">
 <p class="section-index">08 — Limits</p>
 <h2><em>Not for everything.</em></h2>
@@ -173,7 +174,8 @@ Both work. This one works harder.
 </div>
 </div>
 </div>
-</section>
+</section> 
+-->
 
 <section class="nc-final">
 <h2>Try it yourself on <a href="/prompt.forge/">//prompt.forge</a></h2>
