@@ -1,6 +1,6 @@
 ---
 name: commit
-description: 'Create and commit a conventional commit message. Use when files are staged and ready to commit, or when formatting a git commit with type, scope, subject, body, and ticket reference.'
+description: Create and execute a conventional commit with gitmoji. Use whenever the user wants to commit, mentions committing, staging changes, or asks to save/record work in git — even if they don't say "staged" explicitly.
 argument-hint: 'optional scope or ticket override'
 ---
 
@@ -25,4 +25,4 @@ body
 2. Flag unstaged changes that touch staged files — ask before proceeding if staging looks wrong
 3. Infer type, scope, and gitmoji — ask only if type is genuinely ambiguous
 4. Show the full message in a code block
-5. Ask for confirmation with three fixed choices: **Commit** / **Cancel** / **Edit message** (no freeform input) — only run `git commit` if the user confirms
+5. Use an interactive question tool to ask for confirmation with three fixed choices: **Commit** / **Cancel** / **Edit message** — only run `git commit` if the user confirms
