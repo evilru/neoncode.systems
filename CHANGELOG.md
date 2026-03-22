@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.4.0] - 2026-03-22
+
+### 🚀 Features
+
+- ✨ add behaviour priming HTML prototype draft
+- ✨ add behaviour priming page to proto.labs with use cases and prompts
+- ✨ move behaviour priming to own section, add manifest draft and JTBD prompt
+- 💄 add dark theme, DM Mono font, and restyle site around behaviour priming
+- ✨ update homepage tagline and add navigation section
+- 📝 add context section explaining behaviour priming origins
+- ✨ add related insights section to proto.labs index
+- ✨ add Martin Haberfellner profile page with principles and AI focus
+- ✨ add thinking section with ai-native SDLC and terminal cycle essays
+- ✨ add NcHero Vue component and refactor global stylesheet
+- 🚧 add limits section placeholder to behaviour priming
+- *(skills)* ✨ add commit skill with gitmoji support
+
+### 🚜 Refactor
+
+- ♻️ clean up navigation links across config and index pages
+- ♻️ migrate behaviour priming hero to NcHero component
+- ♻️ migrate homepage hero to NcHero and sharpen section content
+- ♻️ migrate martin-haberfellner page hero to NcHero component
+- ♻️ simplify and condense behaviour priming hero section
+- ♻️ tighten content and navigation across all main pages
+
+### 📚 Documentation
+
+- ✏️ update prompt.forge hero text and tagline
+- ✏️ update learning zone mode page tagline
+- *(skills)* 📝 update commit skill description and confirmation step
+- *(releasenotes)* 📝 add behaviour-priming launch release note
+
+### ⚙️ Miscellaneous Tasks
+
+- 🗑️ remove VitePress boilerplate sample files
 ## [0.3.1] - 2026-02-19
 
 ### 🐛 Bug Fixes
