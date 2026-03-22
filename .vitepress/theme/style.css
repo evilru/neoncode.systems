@@ -488,7 +488,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nc-compare-card li::before {
-  content: "\u2013";
+  content: "–";
   position: absolute;
   left: 0;
   color: var(--nc-border);
@@ -499,7 +499,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nc-compare-highlight li::before {
-  content: "\u2713";
+  content: "✓";
   color: var(--nc-accent);
 }
 
