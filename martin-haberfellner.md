@@ -50,7 +50,7 @@ title: Martin Haberfellner
 </div>
 </section>
 
-<section class="nc-section nc-section-border-top">
+<section class="nc-section nc-section-border-top vp-doc">
 <p class="section-index">By the way.</p>
 <p>If you ever need a votable Quake 3 server or a working stats tool — <a href="https://strikenet.com">strikenet.com</a> has been running since 1999. I bought the domain from my first employer when I left. The server still runs. The <a href="https://github.com/evilru/quake3-vsp-stats">stats tool</a> is dockerized and occasionally gets a fix. Some things are worth keeping alive.</p>
 </section>

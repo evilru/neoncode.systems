@@ -66,7 +66,7 @@ hero:
 <p>When a prompt is semantically saturated, adding more concepts changes nothing. That's not a limitation. That's the signal that the field is complete.</p>
 </section>
 
-<section class="nc-section">
+<!-- <section class="nc-section">
 <p class="section-index">04 — Consequences</p>
 <h2>Most prompt engineering is software engineering <em>wearing a different hat.</em></h2>
 <p>Deterministic thinking applied to a probabilistic system. Define every step. Anticipate every case. Control every output.</p>
@@ -76,10 +76,10 @@ hero:
 <div class="nc-quote">
 <p>"Frame. Goal. Trust. The model finds the path. That's not vague — that's accurate."</p>
 </div>
-</section>
+</section> -->
 
 <section class="nc-section">
-<p class="section-index">05 — Method</p>
+<p class="section-index">04 — Method</p>
 <h2>Behaviour Priming. Not programming. <em>Activating.</em></h2>
 <p>The capability is already there. Every LLM has absorbed how interviews work. How coaching works. How a Socratic conversation feels. How to hold space. How to push back gently. How to recognize when someone is overwhelmed.</p>
 <p>It's in the training data — everywhere, implicit, deep. You don't teach it. You <strong>prime it.</strong></p>

@@ -73,7 +73,7 @@ export default defineConfig({
     },
     nav: [
       { text: '//behaviour.priming', link: '/behaviour.priming/index.md' },
-      { text: '//thinking', link: '/thinking/index.md' },
+      // { text: '//thinking', link: '/thinking/index.md' },
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
     ],

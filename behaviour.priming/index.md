@@ -98,11 +98,11 @@ hero:
 </div>
 </div>
 </div>
-</section>
 
 <div class="nc-quote">
-<blockquote>A cast with scripts performs. Characters with depth find the play.</blockquote>
+<p>A cast with scripts performs. Characters with depth find the play.</p>
 </div>
+</section>
 
 <section class="nc-section nc-section-border-top">
 <p class="section-index">04 — The Spectrum</p>

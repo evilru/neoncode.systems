@@ -35,7 +35,7 @@ AI can make you lazy. Copy-paste solutions without understanding. This prompt ap
 
 **Want a custom prompt?** Submit your use case via **[//prompt.forge](/prompt.forge/)** — I'll build one using Behaviour Priming.
 
-## Related
+<!-- ## Related
 
-Where the experiments lead — short thoughts, observations, things worth writing down before they disappear: **[//thinking](/thinking/)**
+Where the experiments lead — short thoughts, observations, things worth writing down before they disappear: **[//thinking](/thinking/)** -->
 
