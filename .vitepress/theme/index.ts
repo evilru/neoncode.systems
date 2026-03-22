@@ -3,6 +3,7 @@ import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import VersionBadge from './components/VersionBadge.vue'
+import NcHero from './components/NcHero.vue'
 import './style.css'
 
 // Read version once at module level
@@ -17,6 +18,7 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
+    app.component('NcHero', NcHero)
     // Provide version globally for any component to use
     app.config.globalProperties.$version = APP_VERSION
   }

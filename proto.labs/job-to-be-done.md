@@ -1,6 +1,20 @@
-# Job To Be Done
+---
+layout: home
 
-Writing good prompts is hard. Most people don't realize how much unstated context affects the result. This prompt solves that through a guided Jobs-to-be-Done interview – it uncovers the hidden context behind what you're trying to accomplish, then generates two artifacts:
+hero:
+  name: "Job To Be Done"
+  text: "Writing good prompts is hard."
+  tagline: You don't know how much context you're missing until something asks you for it.
+  actions:
+    - theme: brand
+      text: Copy the Prompt
+      link: "#the-prompt"
+    - theme: alt
+      text: See the Method
+      link: /behaviour.priming/
+---
+
+Most people don't realize how much unstated context affects the result. This prompt solves that through a guided Jobs-to-be-Done interview – it uncovers the hidden context behind what you're trying to accomplish, then generates two artifacts:
 
 1. **Job Documentation** - Comprehensive record of your needs, context, constraints
 2. **Optimized Prompt** - Tailored to your exact requirements
@@ -10,10 +24,6 @@ Inspired by how Bob Moesta interviews customers to uncover their real needs. Ada
 ## Share Your Experience
 
 Tried this prompt? [Tell me how it worked](https://github.com/evilru/prompt.forge)
-
-## Need Something Custom?
-
-Have a different use case? [Submit it](https://github.com/evilru/prompt.forge) – I work on selected submissions (~1 per week).
 
 ## The Prompt
 

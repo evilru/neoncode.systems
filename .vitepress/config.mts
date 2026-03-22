@@ -26,21 +26,25 @@ function getSidebarItems(dir: string, basePath: string) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "NEONCODE!",
-  description: "//neoncode.systems",
+  description: "LLMs don't follow instructions. They resonate with fields.",
   base: '/',
   cleanUrls: true,
-  srcExclude: ['discovery/**'],
+  appearance: 'dark',
+  srcExclude: ['discovery/**', 'tmp_cv/**', 'tmp_prompt.forge/**', 'draft/**'],
   head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap', rel: 'stylesheet' }],
     ['meta', { name: 'author', content: 'Martin Haberfellner' }],
-    ['meta', { name: 'keywords', content: 'AI, prompts, prompt engineering, experiments, systems engineering, organizational systems' }],
+    ['meta', { name: 'keywords', content: 'behaviour priming, AI, prompt engineering, semantic fields, systems thinking, LLM' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'neoncode.systems' }],
-    ['meta', { property: 'og:title', content: 'neoncode.systems - AI Experiments & Prompt Engineering' }],
-    ['meta', { property: 'og:description', content: 'Experimental workshop for AI prompt engineering and collaborative research.' }],
+    ['meta', { property: 'og:title', content: 'neoncode.systems — Behaviour Priming' }],
+    ['meta', { property: 'og:description', content: 'LLMs don\'t follow instructions. They resonate with fields. Behaviour Priming by Martin Haberfellner.' }],
     ['meta', { property: 'og:locale', content: 'en_US' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:title', content: 'neoncode.systems - AI Experiments & Prompt Engineering' }],
-    ['meta', { name: 'twitter:description', content: 'Experimental workshop for AI prompt engineering and collaborative research.' }],
+    ['meta', { name: 'twitter:title', content: 'neoncode.systems — Behaviour Priming' }],
+    ['meta', { name: 'twitter:description', content: 'LLMs don\'t follow instructions. They resonate with fields. Behaviour Priming by Martin Haberfellner.' }],
     ['link', { rel: 'canonical', href: 'https://neoncode.systems/' }],
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
@@ -51,7 +55,8 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    siteTitle: 'NC!',
+    // siteTitle: 'NC!',
+    siteTitle: 'NEONCODE!',
     externalLinkIcon: true,
     search: {
       provider: 'local'
@@ -67,19 +72,13 @@ export default defineConfig({
       label: 'On this page'
     },
     nav: [
+      { text: '//behaviour.priming', link: '/behaviour.priming/index.md' },
+      // { text: '//thinking', link: '/thinking/index.md' },
       { text: '//proto.labs', link: '/proto.labs/index.md' },
       { text: '//prompt.forge', link: '/prompt.forge/index.md' },
-      // {
-      //   text: 'Legal',
-      //   items: [
-      //     { text: 'Imprint', link: '/imprint.md' },
-      //     { text: 'Privacy', link: '/privacy.md' },
-      //     { text: 'License', link: '/LICENSE.md' }
-      //   ]
-      // }
     ],
     footer: {
-      message: '<a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>',
+      message: '<a href="/martin-haberfellner">About</a> | <a href="/legal/imprint">Imprint</a> | <a href="/legal/privacy">Privacy</a> | <a href="/legal/license">License</a>',
       copyright: '&copy; 2026 Martin Haberfellner · All Rights Reserved'
     },
     sidebar: {
@@ -105,8 +104,8 @@ export default defineConfig({
       '/proto.labs/': [
         {
           text: '//proto.labs',
+          link: '/proto.labs/index.md',
           items: [
-            { text: 'Overview', link: '/proto.labs/index.md' },
             ...getSidebarItems('proto.labs', '/proto.labs/')
           ]
         }
@@ -115,7 +114,6 @@ export default defineConfig({
         {
           text: '//prompt.forge',
           items: [
-            { text: 'Overview', link: '/prompt.forge/index.md' },
             ...getSidebarItems('prompt.forge', '/prompt.forge/')
           ]
         }

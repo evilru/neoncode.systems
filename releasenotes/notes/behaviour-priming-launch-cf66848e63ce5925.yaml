@@ -1,0 +1,34 @@
+---
+prelude: >
+    Behaviour Priming is now a first-class section of the site. The concept
+    moves from a single proto.labs experiment to a dedicated top-level area
+    with its own page, navigation entry, and editorial voice. The site visual
+    identity has been overhauled to match: dark mode, DM Mono typography.
+    VitePress sample content has been removed entirely.
+features:
+  - |
+    New top-level section //behaviour.priming with its own index page,
+    hero, context explanation, and a placeholder for the upcoming Limits
+    section. The page introduces Behaviour Priming as a method, explains
+    its origins, and links to related thinking.
+  - |
+    New martin-haberfellner.md profile page introducing Martin Haberfellner
+    with personal principles and current focus on AI-native delivery.
+  - |
+    New commit skill (.github/skills/commit/) for creating conventional
+    commits with mandatory gitmoji, optional scope, required body, and
+    interactive confirmation. Includes a full gitmoji reference table
+    (references/gitmoji.md) sourced from gitmoji.dev.
+other:
+  - |
+    VitePress boilerplate files (api-examples.md, markdown-examples.md)
+    removed from the repository.
+  - |
+    Navigation updated: //behaviour.priming added as top-level nav entry.
+    Redundant "Overview" sidebar items removed. Footer links cleaned up.
+  - |
+    Site title changed to "NEONCODE!", description and all meta/OG/Twitter
+    tags updated to reflect the Behaviour Priming positioning.
+  - |
+    HTML drafts for behaviour-priming and the prompt.forge manifest moved
+    into the draft/ folder and excluded from the VitePress build.
