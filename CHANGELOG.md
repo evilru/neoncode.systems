@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.3] - 2026-03-23
+
+### 🚀 Features
+
+- *(copilot)* ✨ add frontend-design skill
+
+### 🐛 Bug Fixes
+
+- *(fonts)* 🔒 replace Google Fonts with self-hosted @fontsource
 ## [0.4.2] - 2026-03-22
 
 ### 🐛 Bug Fixes
