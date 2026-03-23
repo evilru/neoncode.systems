@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.4] - 2026-03-23
+
+### 🚀 Features
+
+- *(draft)* Add prompt diff viewer prototype
+- *(draft)* ⚗️ add VHS-distortion canvas effect for NC! branding
+
+### 💼 Other
+
+- ✨ dramaturgy, seo, and content narrative overhaul
 ## [0.4.3] - 2026-03-23
 
 ### 🚀 Features
