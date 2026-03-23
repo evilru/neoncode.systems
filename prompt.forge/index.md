@@ -1,10 +1,29 @@
 ---
 layout: home
+title: "//prompt.forge — NEONCODE!"
+head:
+  - - meta
+    - name: description
+      content: "Submit a prompt use case — get a Behaviour Priming compiled version back. Test both, vote on what works better. Open research into prompt architecture."
+  - - meta
+    - name: keywords
+      content: "prompt forge, behaviour priming test, prompt comparison, compiled prompt, prompt architecture experiment, LLM prompt quality"
+  - - meta
+    - property: og:title
+      content: "//prompt.forge — neoncode.systems"
+  - - meta
+    - property: og:description
+      content: "The live test. Behaviour Priming — does it work for you? Submit a use case. Test both. You decide."
+  - - meta
+    - name: twitter:title
+      content: "//prompt.forge — neoncode.systems"
+  - - meta
+    - name: twitter:description
+      content: "The live test for Behaviour Priming. Submit a use case. Test both. You decide."
 
 hero:
-  name: "//prompt.forge"
   text: "Send me your prompt. <em>I'll rebuild it.</em>"
-  tagline: I want to know if Behaviour Priming works for you the way it works for me. You test both. You decide.
+  tagline: You test both. You decide.
   actions:
     - theme: brand
       text: Join the Experiment
@@ -16,7 +35,7 @@ hero:
 
 ## The Experiment
 
-**[Behaviour Priming](/)** works for me. Through this experiment, I'm testing whether that's true for others too.
+This is the live test. Behaviour Priming — does it work for you?
 
 ### How It Works
 

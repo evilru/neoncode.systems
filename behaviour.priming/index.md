@@ -1,6 +1,25 @@
 ---
 layout: home
-title: //behaviour.priming
+title: "//behaviour.priming — NEONCODE!"
+head:
+  - - meta
+    - name: description
+      content: "Behaviour Priming replaces step-by-step LLM instructions with a designed semantic field. Stable behaviour, no drift, minimal prompts. See the method and live examples."
+  - - meta
+    - name: keywords
+      content: "behaviour priming, LLM behaviour design, prompt architecture, semantic field, stable prompts, autonomous agent, prompt method"
+  - - meta
+    - property: og:title
+      content: "//behaviour.priming — NEONCODE!"
+  - - meta
+    - property: og:description
+      content: "Replace instruction lists with designed semantic fields. The LLM finds the path. No duct tape."
+  - - meta
+    - name: twitter:title
+      content: "//behaviour.priming — NEONCODE!"
+  - - meta
+    - name: twitter:description
+      content: "Replace instruction lists with designed semantic fields. The LLM finds the path."
 
 hero:
   name: "//behaviour:priming"
@@ -98,7 +117,9 @@ hero:
 </div>
 </div>
 </div>
+</section>
 
+<section class="nc-section">
 <div class="nc-quote">
 <p>A cast with scripts performs. Characters with depth find the play.</p>
 </div>
@@ -178,7 +199,8 @@ Both work. This one works harder.
 -->
 
 <section class="nc-final">
-<h2>Try it yourself on <a href="/prompt.forge/">//prompt.forge</a></h2>
-<p>Submit a real use case. Get a prompt built with Behaviour Priming.</p>
+<h2>See if it works for you.</h2>
+<p>Submit a use case. I'll build a prompt with Behaviour Priming. You test both — you decide.</p>
+<p><a href="/prompt.forge/">//prompt.forge →</a></p>
 </section>
 

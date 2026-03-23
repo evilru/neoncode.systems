@@ -1,8 +1,27 @@
 ---
 layout: home
+title: "//proto.labs — NEONCODE!"
+head:
+  - - meta
+    - name: description
+      content: "Experiments built on Behaviour Priming: a Jobs-to-be-Done interview prompt and a Learning Zone Mode for adaptive AI teaching. Try them, break them, share what works."
+  - - meta
+    - name: keywords
+      content: "behaviour priming prompts, Jobs-to-be-Done prompt, learning zone mode, AI teaching prompt, prompt experiments, jobs to be done"
+  - - meta
+    - property: og:title
+      content: "//proto.labs — neoncode.systems"
+  - - meta
+    - property: og:description
+      content: "Experiments built on Behaviour Priming. Take what's useful. Break what isn't."
+  - - meta
+    - name: twitter:title
+      content: "//proto.labs — neoncode.systems"
+  - - meta
+    - name: twitter:description
+      content: "Experiments built on Behaviour Priming. Running right now."
 
 hero:
-  name: "//proto.labs"
   text: '"I''ve never done it before, so I''m sure it''ll work."'
   tagline: You won't learn without trying. And you won't find out what's possible.
   actions:
@@ -13,9 +32,7 @@ hero:
 
 ## Current Experiments {#experiments}
 
-Built on **[Behaviour Priming](/behaviour.priming/)** — the method described in the [manifest](/). Some of these are polished enough to use. Some are still rough. All of them are real.
-
-Take what's useful. Break what isn't.
+Built on **[Behaviour Priming](/behaviour.priming/)** — the method described in the [manifest](/). This is what's running right now. Take what's useful. Break what isn't.
 
 ### Job To Be Done Prompt
 

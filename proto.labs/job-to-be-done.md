@@ -1,5 +1,22 @@
 ---
 layout: home
+title: "Job To Be Done Prompt — //proto.labs — NEONCODE!"
+head:
+  - - meta
+    - name: description
+      content: "A guided Jobs-to-be-Done interview prompt that uncovers the hidden context behind what you're trying to accomplish — then generates job documentation and an optimised prompt. Built on Behaviour Priming."
+  - - meta
+    - property: og:title
+      content: "Job To Be Done Prompt — NEONCODE!"
+  - - meta
+    - property: og:description
+      content: "You don't know how much context you're missing until something asks you for it. A Jobs-to-be-Done interview prompt built on Behaviour Priming."
+  - - meta
+    - name: twitter:title
+      content: "Job To Be Done Prompt — NEONCODE!"
+  - - meta
+    - name: twitter:description
+      content: "You don't know how much context you're missing until something asks you for it."
 
 hero:
   name: "Job To Be Done"
@@ -28,7 +45,7 @@ Tried this prompt? [Tell me how it worked](https://github.com/evilru/prompt.forg
 ## The Prompt
 
 ::: tip Copy this prompt
-Copy the prompt below and use it with your AI assistant to start a guided JTBD interview.
+Copy the prompt below and use it with your AI assistant to start a guided Jobs-to-be-Done interview.
 :::
 
 ````markdown
