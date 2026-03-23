@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.5] - 2026-03-23
+
+### 🐛 Bug Fixes
+
+- *(theme)* 🩹 remove bottom padding and section border-top
 ## [0.4.4] - 2026-03-23
 
 ### 🚀 Features
