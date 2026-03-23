@@ -34,7 +34,7 @@ hero:
       link: "#charged-prompt"
 ---
 
-<section class="nc-section nc-section-border-top">
+<section class="nc-section">
 <p class="section-index">01 — Method</p>
 <h2>Set the stage. <em>The model finds the play.</em></h2>
 <p>Instead of scripting every step, you set the stage. Two inputs. One autonomous agent.</p>
