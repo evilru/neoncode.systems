@@ -1,5 +1,22 @@
 ---
 layout: home
+title: "Learning Zone Mode — //proto.labs — NEONCODE!"
+head:
+  - - meta
+    - name: description
+      content: "An adaptive teaching prompt that keeps you learning instead of atrophying. Detects your zone — comfort, learning, or panic — and adjusts accordingly. Built on Behaviour Priming."
+  - - meta
+    - property: og:title
+      content: "Learning Zone Mode — NEONCODE!"
+  - - meta
+    - property: og:description
+      content: "AI can make you lazy. What if it asked instead of answered? An adaptive teaching prompt built on Behaviour Priming."
+  - - meta
+    - name: twitter:title
+      content: "Learning Zone Mode — NEONCODE!"
+  - - meta
+    - name: twitter:description
+      content: "AI can make you lazy. What if it asked instead of answered?"
 
 hero:
   name: "Learning Zone"

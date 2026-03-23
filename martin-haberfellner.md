@@ -1,6 +1,25 @@
 ---
 layout: page
-title: Martin Haberfellner
+title: Martin Haberfellner — NEONCODE!
+head:
+  - - meta
+    - name: description
+      content: "Martin Haberfellner — prompt architect and organizational engineer. Creator of Behaviour Priming. Lean foundations, DevOps maturity, and the problem one level deeper."
+  - - meta
+    - name: keywords
+      content: "Martin Haberfellner, behaviour priming, prompt architect, organizational engineer, lean DevOps, AI maturity, neoncode"
+  - - meta
+    - property: og:title
+      content: "Martin Haberfellner"
+  - - meta
+    - property: og:description
+      content: "The interesting problem is never the feature — it's what made it possible in the first place."
+  - - meta
+    - name: twitter:title
+      content: "Martin Haberfellner"
+  - - meta
+    - name: twitter:description
+      content: "The interesting problem is never the feature."
 ---
 
 <NcHero>
@@ -47,6 +66,12 @@ title: Martin Haberfellner
 <h3>Freedom as outcome.</h3>
 <p>When a system works — really works — people stop fighting it and start using it to think. That's the goal. Systems that liberate rather than constrain.</p>
 </div>
+</div>
+</section>
+
+<section class="nc-section">
+<div class="nc-quote">
+<p>There are moments in life when you feel like Don Quijote. And sometimes, you just feel heard.</p>
 </div>
 </section>
 

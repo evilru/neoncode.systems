@@ -1,10 +1,30 @@
 ---
 layout: home
+title: Martin Haberfellner — NEONCODE!
+head:
+  - - meta
+    - name: description
+      content: "Martin Haberfellner builds semantic prompt fields instead of instruction lists. Explore Behaviour Priming — a method for stable, drift-resistant LLM behaviour."
+  - - meta
+    - name: keywords
+      content: "behaviour priming, prompt engineering, LLM semantic fields, prompt design, Martin Haberfellner, AI prompting, designed prompts"
+  - - meta
+    - property: og:title
+      content: "Martin Haberfellner — NEONCODE!"
+  - - meta
+    - property: og:description
+      content: "Build semantic fields instead of instruction lists. Stable LLM behaviour without duct tape."
+  - - meta
+    - name: twitter:title
+      content: "Martin Haberfellner — NEONCODE!"
+  - - meta
+    - name: twitter:description
+      content: "Build semantic fields instead of instruction lists. Stable LLM behaviour without duct tape."
 
 hero:
   name: "Martin Haberfellner"
   text: "LLMs don't follow instructions. <em>They resonate with fields</em>."
-  tagline: The field is always there. The question is whether you designed it.
+  tagline: What do you resonate with?
   actions:
     - theme: brand
       text: Behaviour Priming
@@ -41,14 +61,14 @@ hero:
 <p class="old">Emerges from instructions</p>
 <p class="old">Noisy — every word is potential interference</p>
 <p class="old">Unstable under unexpected input</p>
-<p class="old">Drift = more instructions</p>
+<p class="old">More rules. More problems.</p>
 </div>
 <div class="nc-compare-card">
 <p class="label">Designed field</p>
 <p class="new"><strong>Built from values and principles</strong></p>
 <p class="new"><strong>Dense — every word earns its place</strong></p>
 <p class="new"><strong>Stable — handles what you didn't anticipate</strong></p>
-<p class="new"><strong>Drift disappears</strong></p>
+<p class="new"><strong>No more duct tape.</strong></p>
 </div>
 </div>
 <p>The difference is not whether a field exists. It's whether it was <strong>designed or happened by accident.</strong> Designed fields hold. Accidental fields eventually break.</p>
@@ -116,8 +136,9 @@ hero:
 
 <section class="nc-final">
 <h2>Once you see the field, <em>you can't unsee it.</em></h2>
-<p>This is not a framework. It's not a methodology to adopt. It's a shift in how you see the thing. Once you see it, the prompts write themselves differently. The results hold differently. The drift disappears.</p>
-<p><a href="/behaviour.priming/">See for yourself</a></p>
+<p>This is not a framework. It's not a methodology to adopt. It's a shift in how you see the thing. Once you see it, the prompts write themselves differently. The results hold differently. The prompt became stable.</p>
+<p>The method exists. It has a name.</p>
+<p><a href="/behaviour.priming/">Behaviour Priming →</a></p>
 </section>
 
 </div>
