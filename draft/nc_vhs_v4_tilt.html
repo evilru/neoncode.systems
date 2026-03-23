@@ -1,0 +1,358 @@
+
+<div style="width:100%;height:520px;position:relative;overflow:hidden;background:#0a0a0a;border-radius:8px;">
+  <canvas id="c" style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;"></canvas>
+  <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:14px;align-items:center;z-index:10;background:rgba(0,0,0,0.65);padding:7px 14px;border-radius:6px;border:0.5px solid rgba(255,255,255,0.12);">
+    <label style="font-size:11px;color:#888;font-family:monospace;">color</label>
+    <input type="color" id="colorPicker" value="#00ff88" style="width:28px;height:22px;border:none;background:none;cursor:pointer;padding:0;">
+    <label style="font-size:11px;color:#888;font-family:monospace;">opacity</label>
+    <input type="range" id="opacitySlider" min="5" max="100" value="65" style="width:72px;">
+    <span id="opacityVal" style="font-size:11px;color:#888;font-family:monospace;min-width:28px;">65%</span>
+    <label style="font-size:11px;color:#888;font-family:monospace;">rotation</label>
+    <input type="range" id="rotSlider" min="-45" max="0" value="-20" style="width:60px;">
+    <span id="rotVal" style="font-size:11px;color:#888;font-family:monospace;min-width:28px;">-20°</span>
+    <button id="glitchBtn" style="font-size:11px;font-family:monospace;color:#aaa;background:none;border:0.5px solid rgba(255,255,255,0.2);padding:3px 9px;cursor:pointer;border-radius:4px;">glitch ↯</button>
+  </div>
+  <div id="loadmsg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#444;font-family:monospace;font-size:12px;">loading...</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const canvas=document.getElementById('c');
+const cont=canvas.parentElement;
+const loadmsg=document.getElementById('loadmsg');
+let W=cont.clientWidth, H=cont.clientHeight;
+
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:false});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(W,H);
+renderer.setClearColor(0x000000,0);
+
+const scene=new THREE.Scene();
+const cam=new THREE.OrthographicCamera(-W/2,W/2,H/2,-H/2,0.1,100);
+cam.position.z=10;
+
+let userRotDeg=-20;
+
+function makeTexture(color,w,h,rotDeg){
+  const oc=document.createElement('canvas');
+  oc.width=w; oc.height=h;
+  const ox=oc.getContext('2d');
+  const fs=Math.min(w,h)*0.75;
+  ox.clearRect(0,0,w,h);
+  ox.save();
+  ox.translate(w*0.05, h*0.62);
+  ox.rotate(rotDeg*Math.PI/180);
+  ox.font=`900 ${fs}px 'Arial Black','Impact',sans-serif`;
+  ox.textAlign='left';
+  ox.textBaseline='alphabetic';
+  ox.fillStyle='#'+color.getHexString();
+  ox.fillText('NC!',0,0);
+  ox.restore();
+  return new THREE.CanvasTexture(oc);
+}
+
+let uColor=new THREE.Color('#00ff88');
+let uOpacity=0.65;
+let tex=makeTexture(uColor,W,H,userRotDeg);
+const geo=new THREE.PlaneGeometry(W,H);
+const mat=new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:1});
+const mesh=new THREE.Mesh(geo,mat);
+scene.add(mesh);
+
+const rt=new THREE.WebGLRenderTarget(W,H);
+const postScene=new THREE.Scene();
+const postCam=new THREE.OrthographicCamera(-W/2,W/2,H/2,-H/2,0.1,100);
+postCam.position.z=10;
+
+const vhsMat=new THREE.ShaderMaterial({
+  uniforms:{
+    tDiffuse:{value:null},
+    time:{value:0},
+    res:{value:new THREE.Vector2(W,H)},
+    chroma:{value:0.008},
+    chromaY:{value:0.0},
+    tracking:{value:0.0},
+    trackBand:{value:0.0},
+    trackSharp:{value:0.0},
+    horizShift:{value:0.0},
+    glitch:{value:0.0},
+    glitchSeed:{value:0.0},
+    noiseAmt:{value:0.08},
+    lumaFlicker:{value:1.0},
+    headSwitch:{value:0.0},
+    dropoutY:{value:-1.0},
+    dropoutAmt:{value:0.0},
+    opacity:{value:uOpacity},
+  },
+  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`
+    uniform sampler2D tDiffuse;
+    uniform float time;
+    uniform vec2 res;
+    uniform float chroma;
+    uniform float chromaY;
+    uniform float tracking;
+    uniform float trackBand;
+    uniform float trackSharp;
+    uniform float horizShift;
+    uniform float glitch;
+    uniform float glitchSeed;
+    uniform float noiseAmt;
+    uniform float lumaFlicker;
+    uniform float headSwitch;
+    uniform float dropoutY;
+    uniform float dropoutAmt;
+    uniform float opacity;
+    varying vec2 vUv;
+
+    float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    float hash1(float p){return fract(sin(p*127.1)*43758.5453);}
+    float noise2(vec2 p){
+      vec2 i=floor(p);vec2 f=fract(p);
+      float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));
+      vec2 u=f*f*(3.0-2.0*f);
+      return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+    }
+
+    void main(){
+      vec2 uv=vUv;
+
+      // HORIZONTAL DRIFT — whole frame shifts left/right like a rolling signal
+      uv.x=fract(uv.x+horizShift);
+
+      // TRACKING SLIP
+      float slipped=uv.y+tracking;
+      float tear=0.0;
+      if(trackBand>0.01){
+        float rawY=fract(slipped);
+        float dist=abs(rawY-uv.y);
+        tear=smoothstep(0.012,0.0,dist)*trackBand*trackSharp;
+        if(uv.y<0.08){
+          float hsMag=headSwitch*(0.08-uv.y)/0.08;
+          uv.x=fract(uv.x+(hash(vec2(floor(uv.y*200.0),glitchSeed))-0.5)*hsMag*0.12);
+        }
+      }
+      uv.y=fract(slipped);
+
+      // GLITCH — per-row horizontal displacement
+      float rowH=0.5+hash1(glitchSeed*0.1)*1.5;
+      float glitchRow=floor(uv.y*res.y/rowH)*rowH/res.y;
+      float gr=hash(vec2(glitchRow,glitchSeed));
+      if(gr>(1.0-glitch*0.9)){
+        float disp=(hash(vec2(glitchRow,glitchSeed+7.3))-0.5)*0.09*glitch;
+        uv.x=clamp(uv.x+disp,0.0,1.0);
+      }
+
+      // CHROMA
+      float ca=chroma;
+      float caY=chromaY;
+      float r=texture2D(tDiffuse,clamp(uv+vec2(ca,caY),0.0,1.0)).r;
+      float g=texture2D(tDiffuse,uv).g;
+      float b=texture2D(tDiffuse,clamp(uv+vec2(-ca,-caY),0.0,1.0)).b;
+      float a=texture2D(tDiffuse,uv).a;
+      vec4 col=vec4(r,g,b,a);
+
+      // SCANLINES
+      float sl=mod(gl_FragCoord.y,3.0);
+      col.rgb*=(sl<1.0)?0.82:1.0;
+
+      // TAPE NOISE
+      float fineNoise=hash(uv+vec2(time*3.71,time*2.13));
+      float slowNoise=noise2(uv*4.0+vec2(time*0.3,time*0.17));
+      col.rgb+=(fineNoise*0.7+slowNoise*0.3-0.5)*noiseAmt*col.a;
+
+      // LUMA FLICKER
+      col.rgb*=lumaFlicker;
+
+      // DROPOUT
+      if(dropoutAmt>0.01){
+        float dy=abs(uv.y-dropoutY);
+        if(dy<0.003){
+          float doRnd=hash(vec2(uv.x*200.0,dropoutY));
+          if(doRnd>0.3) col.rgb=mix(col.rgb,vec3(doRnd),dropoutAmt*(1.0-dy/0.003));
+        }
+      }
+
+      col.rgb+=tear;
+      col.a*=opacity;
+      gl_FragColor=col;
+    }
+  `,
+  transparent:true,
+  depthWrite:false,
+});
+postScene.add(new THREE.Mesh(new THREE.PlaneGeometry(W,H),vhsMat));
+
+// ── Smooth noise walker ───────────────────────────────────────────────────────
+function SmoothNoise(speed,scale){
+  this.speed=speed; this.scale=scale;
+  this.val=0; this.target=0; this.stepTimer=0;
+}
+SmoothNoise.prototype.tick=function(dt){
+  this.stepTimer-=dt;
+  if(this.stepTimer<=0){
+    this.target=(Math.random()-0.5)*2*this.scale;
+    this.stepTimer=0.05+Math.random()*0.2;
+  }
+  this.val+=(this.target-this.val)*(0.3+Math.random()*0.4);
+  return this.val;
+};
+
+const chromaNoise=new SmoothNoise(1.2,1.0);
+const chromaYNoise=new SmoothNoise(0.7,0.5);
+const lumaFlickerNoise=new SmoothNoise(3.0,0.06);
+const noiseAmtNoise=new SmoothNoise(0.5,0.03);
+
+// Horizontal drift — two layers: slow roll + occasional snap
+const horizDrift={
+  offset:0,
+  slowTarget:0,
+  slowTimer:0,
+  snapOffset:0,
+  snapDecay:0,
+};
+function scheduleHorizSnap(){
+  setTimeout(()=>{
+    // occasional horizontal snap/jump like signal instability
+    horizDrift.snapOffset=(Math.random()-0.5)*0.015;
+    horizDrift.snapDecay=0.92+Math.random()*0.05;
+    scheduleHorizSnap();
+  }, 2000+Math.random()*7000);
+}
+scheduleHorizSnap();
+
+const glitch={intensity:0,timer:0,seed:0};
+function scheduleGlitch(){
+  setTimeout(()=>{
+    const r=Math.random();
+    if(r<0.45){glitch.intensity=0.12+Math.random()*0.18;glitch.timer=5+Math.floor(Math.random()*10);}
+    else if(r<0.80){glitch.intensity=0.35+Math.random()*0.35;glitch.timer=15+Math.floor(Math.random()*25);}
+    else{glitch.intensity=0.75+Math.random()*0.25;glitch.timer=35+Math.floor(Math.random()*45);}
+    glitch.seed=Math.random()*200;
+    scheduleGlitch();
+  },1500+Math.random()*6000);
+}
+scheduleGlitch();
+
+const track={offset:0,target:0,phase:'idle',timer:0,sharp:0};
+function scheduleTracking(){
+  setTimeout(()=>{
+    track.phase='slip';
+    track.target=(Math.random()<0.5?1:-1)*(0.025+Math.random()*0.07);
+    track.sharp=0.5+Math.random()*0.5;
+    track.timer=50+Math.floor(Math.random()*120);
+    scheduleTracking();
+  },4000+Math.random()*10000);
+}
+scheduleTracking();
+
+const dropout={y:-1,amt:0,timer:0};
+function scheduleDropout(){
+  setTimeout(()=>{
+    dropout.y=0.1+Math.random()*0.8;
+    dropout.amt=0.6+Math.random()*0.4;
+    dropout.timer=3+Math.floor(Math.random()*8);
+    scheduleDropout();
+  },800+Math.random()*3000);
+}
+scheduleDropout();
+
+let headSwitch=0;
+let clock=0,last=performance.now(),running=true;
+
+function tick(){
+  if(!running)return;
+  requestAnimationFrame(tick);
+  const now=performance.now();
+  const dt=Math.min((now-last)/1000,0.05);
+  last=now; clock+=dt;
+
+  // chroma
+  const cNoise=chromaNoise.tick(dt);
+  vhsMat.uniforms.chroma.value=0.006+Math.abs(cNoise)*0.010+glitch.intensity*0.018;
+  vhsMat.uniforms.chromaY.value=chromaYNoise.tick(dt)*0.004;
+
+  // glitch
+  if(glitch.timer>0){
+    glitch.timer--;
+    if(Math.random()<0.6) glitch.seed=Math.random()*200;
+  } else {
+    glitch.intensity*=0.88;
+    if(glitch.intensity<0.008) glitch.intensity=0;
+  }
+  vhsMat.uniforms.glitch.value=glitch.intensity;
+  vhsMat.uniforms.glitchSeed.value=glitch.seed;
+
+  // tracking
+  if(track.phase==='slip'){
+    track.offset+=(track.target-track.offset)*(0.015+Math.random()*0.025);
+    track.timer--;
+    headSwitch=Math.min(Math.abs(track.offset)/0.04,1.0);
+    if(track.timer<=0) track.phase='recover';
+  } else if(track.phase==='recover'){
+    track.offset+=(0-track.offset)*(0.04+Math.random()*0.04);
+    headSwitch*=0.92;
+    if(Math.abs(track.offset)<0.0005){track.offset=0;track.phase='idle';headSwitch=0;}
+  }
+  vhsMat.uniforms.tracking.value=track.offset;
+  vhsMat.uniforms.trackBand.value=Math.min(Math.abs(track.offset)/0.03,1.0);
+  vhsMat.uniforms.trackSharp.value=track.sharp||1.0;
+  vhsMat.uniforms.headSwitch.value=headSwitch;
+
+  // horizontal drift — slow roll + snap
+  horizDrift.slowTimer-=dt;
+  if(horizDrift.slowTimer<=0){
+    horizDrift.slowTarget=(Math.random()-0.5)*0.008;
+    horizDrift.slowTimer=0.3+Math.random()*0.8;
+  }
+  horizDrift.offset+=(horizDrift.slowTarget-horizDrift.offset)*(0.02+Math.random()*0.03);
+  horizDrift.snapOffset*=horizDrift.snapDecay;
+  const totalHoriz=horizDrift.offset+horizDrift.snapOffset;
+  vhsMat.uniforms.horizShift.value=totalHoriz;
+
+  // luma
+  vhsMat.uniforms.lumaFlicker.value=Math.max(0.88,Math.min(1.08,1.0+lumaFlickerNoise.tick(dt)));
+
+  // noise
+  vhsMat.uniforms.noiseAmt.value=0.07+Math.abs(noiseAmtNoise.tick(dt))+glitch.intensity*0.06;
+
+  // dropout
+  if(dropout.timer>0){dropout.timer--;vhsMat.uniforms.dropoutY.value=dropout.y;vhsMat.uniforms.dropoutAmt.value=dropout.amt;}
+  else{vhsMat.uniforms.dropoutAmt.value*=0.85;}
+
+  vhsMat.uniforms.time.value=clock;
+
+  renderer.setRenderTarget(rt);
+  renderer.render(scene,cam);
+  renderer.setRenderTarget(null);
+  vhsMat.uniforms.tDiffuse.value=rt.texture;
+  renderer.render(postScene,postCam);
+}
+
+// UI
+document.getElementById('colorPicker').addEventListener('input',e=>{
+  uColor=new THREE.Color(e.target.value);
+  tex.dispose(); tex=makeTexture(uColor,W,H,userRotDeg);
+  mat.map=tex; mat.needsUpdate=true;
+});
+document.getElementById('opacitySlider').addEventListener('input',e=>{
+  uOpacity=parseInt(e.target.value)/100;
+  document.getElementById('opacityVal').textContent=e.target.value+'%';
+  vhsMat.uniforms.opacity.value=uOpacity;
+});
+document.getElementById('rotSlider').addEventListener('input',e=>{
+  userRotDeg=parseInt(e.target.value);
+  document.getElementById('rotVal').textContent=e.target.value+'°';
+  tex.dispose(); tex=makeTexture(uColor,W,H,userRotDeg);
+  mat.map=tex; mat.needsUpdate=true;
+});
+document.getElementById('glitchBtn').addEventListener('click',()=>{
+  glitch.intensity=1.0;
+  glitch.timer=60+Math.floor(Math.random()*40);
+  glitch.seed=Math.random()*200;
+});
+
+loadmsg.style.display='none';
+tick();
+})();
+</script>
