@@ -4,6 +4,11 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import VersionBadge from './components/VersionBadge.vue'
 import NcHero from './components/NcHero.vue'
+import '@fontsource/dm-mono/400.css'
+import '@fontsource/dm-mono/500.css'
+import '@fontsource/dm-mono/400-italic.css'
+import '@fontsource/dm-serif-display/400.css'
+import '@fontsource/dm-serif-display/400-italic.css'
 import './style.css'
 
 // Read version once at module level
